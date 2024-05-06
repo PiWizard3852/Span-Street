@@ -4,25 +4,24 @@ namespace Player
 {
     public class CameraMovement : MonoBehaviour
     {
-public bool lastPress;
-        public KeyCode lastKey;
-        private GameObject _player;
+        public GameObject player;
 
         void Start()
         {
-            _player = GameObject.FindGameObjectWithTag("Player");
-            var cameraTransform = transform;
-        
-            cameraTransform.position = new Vector3(0, 1.5f, 0);
-            cameraTransform.rotation = Quaternion.Euler(0, 180, 0);
-
-            lastPress = false;
+            transform.rotation = Quaternion.Euler(30, 0, 0);
+            Update();
         }
-
+        
         void Update()
         {
-            var playerTransform = transform;
-            var position = playerTransform.position;
+            var cameraTransform = transform;
+            
+            var cameraPosition = cameraTransform.position;
+            var playerPosition = player.transform.position;
+            
+            cameraPosition = new Vector3(cameraPosition.x, playerPosition.y + 10, playerPosition.z - 12);
+            
+            cameraTransform.position = cameraPosition;
         }
     }
 }
