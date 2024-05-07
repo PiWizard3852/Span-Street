@@ -1,4 +1,7 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = System.Random;
 
@@ -20,6 +23,9 @@ namespace Terrain
         private int _terrainStreak;
         private TerrainTypes _lastTerrainType;
 
+        private GameObject[] _cars;
+        private List<float> _carSpeeds;
+
         public GameObject player;
         
         public GameObject grass;
@@ -27,10 +33,16 @@ namespace Terrain
         public GameObject river;
         public GameObject railroad;
         
+        public GameObject yellowCar;
+        public GameObject greenCar;
+        public GameObject blueCar;
+
         void Start()
         {
             _terrainStreak = 1;
             _lastTerrainType = TerrainTypes.GRASS;
+
+            _carSpeeds = new List<float>();
             
             for (_terrainZ = -30; _terrainZ < 50; _terrainZ++)
             {
@@ -45,6 +57,21 @@ namespace Terrain
                 _terrainZ++;
                 InstantiateLand();
             }
+
+            _cars = GameObject.FindGameObjectsWithTag("Car");
+
+            foreach (GameObject car in _cars)
+            {
+                // var carPosition = car.transform.position;
+                // carPosition += car.transform.right * _carSpeeds[(int) carPosition.z + 30];
+                // car.transform.position = carPosition;
+
+                if (Math.Abs(car.transform.position.x - transform.position.x) > 30)
+                {
+                    InstantiateCar((int) car.transform.position.z);
+                    Destroy(car);
+                }
+            }
         }
 
         private void InstantiateLand()
@@ -56,6 +83,7 @@ namespace Terrain
                     break;
                 case TerrainTypes.ROAD:
                     Instantiate(road, new Vector3(0, 0, _terrainZ), Quaternion.Euler(0, 0, 0));
+                    InstantiateCar();
                     break;
                 case TerrainTypes.RIVER:
                     Instantiate(river, new Vector3(0, 0, _terrainZ), Quaternion.Euler(0, 0, 0));
@@ -64,6 +92,32 @@ namespace Terrain
                     Instantiate(railroad, new Vector3(0, 0, _terrainZ), Quaternion.Euler(0, 0, 0));
                     break;
             }
+        }
+        
+        private void InstantiateCar()
+        {
+            InstantiateCar(_terrainZ);
+        }
+
+        private void InstantiateCar(int carZ)
+        {
+            switch ((CarTypes) _random.Next(Enum.GetNames(typeof(CarTypes)).Length))
+            {
+                case CarTypes.YELLOW:
+                    Instantiate(yellowCar, new Vector3(transform.position.x - _random.Next(10, 40), 2f, carZ),
+                        Quaternion.Euler(0, 0, 0));
+                    break;
+                case CarTypes.GREEN:
+                    Instantiate(greenCar, new Vector3(transform.position.x - _random.Next(10, 40), 2f, carZ),
+                        Quaternion.Euler(0, 0, 0));
+                    break;
+                case CarTypes.BLUE:
+                    Instantiate(blueCar, new Vector3(transform.position.x - _random.Next(10, 40), 2f, carZ),
+                        Quaternion.Euler(0, 0, 0));
+                    break;
+            }
+            
+            // _carSpeeds.Add(.03f * _random.Next(1, 2));
         }
         
         private TerrainTypes GetTerrainType()

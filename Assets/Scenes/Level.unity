@@ -641,53 +641,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1653141873}
---- !u!1 &1022158002
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1022158004}
-  - component: {fileID: 1022158003}
-  m_Layer: 0
-  m_Name: CarClass
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1022158003
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1022158002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93ef9479c08a4a18a7ca0f58118a290b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  yellowCar: {fileID: 7061063271619880530, guid: b559a4b02dcb24e5cad955975924c49f, type: 3}
-  greenCar: {fileID: 7061063271619880530, guid: 754dec1790c424123a0abbaaca68e7b4, type: 3}
-  blueCar: {fileID: 7061063271619880530, guid: 74bade217d8db4bb1b1c9c44faf16a65, type: 3}
---- !u!4 &1022158004
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1022158002}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.8863363, y: 10.181963, z: 7.023706}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1345788370
 GameObject:
   m_ObjectHideFlags: 0
@@ -963,6 +916,9 @@ MonoBehaviour:
   road: {fileID: 7580373127110623174, guid: fcfb91c8e591c4db19df611d3de425c0, type: 3}
   river: {fileID: 7580373127110623174, guid: 7601b44129976403b9ccc4479768c4a3, type: 3}
   railroad: {fileID: 7580373127110623174, guid: 2635d1e6589f94bb890e02ca48e38f37, type: 3}
+  yellowCar: {fileID: 7061063271619880530, guid: b559a4b02dcb24e5cad955975924c49f, type: 3}
+  greenCar: {fileID: 7061063271619880530, guid: 754dec1790c424123a0abbaaca68e7b4, type: 3}
+  blueCar: {fileID: 7061063271619880530, guid: 74bade217d8db4bb1b1c9c44faf16a65, type: 3}
 --- !u!1 &1964076408
 GameObject:
   m_ObjectHideFlags: 0
@@ -1077,4 +1033,3 @@ SceneRoots:
   - {fileID: 705507995}
   - {fileID: 963194228}
   - {fileID: 1653141877}
-  - {fileID: 1022158004}

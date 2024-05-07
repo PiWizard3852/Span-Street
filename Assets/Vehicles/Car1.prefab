@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9bd2dc1ddc97a4e9c97264df48f30514, type: 2}
+  - {fileID: 2100000, guid: 8c09e9b21499f41399726d72bbde1d51, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -196,7 +196,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4157464344188924323}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: ff375cbae9eb541f0a5079a6eb521753, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 6795756430835901896}
   m_Layer: 0
   m_Name: Car1
-  m_TagString: Untagged
+  m_TagString: Car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -303,7 +303,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7061063271619880530}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: ff375cbae9eb541f0a5079a6eb521753, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
