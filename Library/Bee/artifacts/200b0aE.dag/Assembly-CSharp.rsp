@@ -353,8 +353,9 @@
 -analyzer:"/Applications/Unity/Hub/Editor/2022.3.21f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Player/CameraMovement.cs"
 "Assets/Player/Controls.cs"
-"Assets/Terrain/Car.cs"
+"Assets/Player/GameState.cs"
 "Assets/Terrain/TerrainGen.cs"
+"Assets/Vehicles/Car.cs"
 -langversion:9.0
 
 /deterministic

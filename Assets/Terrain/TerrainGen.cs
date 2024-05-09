@@ -1,12 +1,16 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using Random = System.Random;
 
 namespace Terrain
 {
+    public enum CarTypes
+    {
+        YELLOW,
+        GREEN,
+        BLUE
+    }
+    
     public enum TerrainTypes
     {
         GRASS,
@@ -24,7 +28,6 @@ namespace Terrain
         private TerrainTypes _lastTerrainType;
 
         private GameObject[] _cars;
-        private List<float> _carSpeeds;
 
         public GameObject player;
         
@@ -37,12 +40,11 @@ namespace Terrain
         public GameObject greenCar;
         public GameObject blueCar;
 
-        void Start()
+        public void Start()
         {
             _terrainStreak = 1;
             _lastTerrainType = TerrainTypes.GRASS;
 
-            _carSpeeds = new List<float>();
             
             for (_terrainZ = -30; _terrainZ < 50; _terrainZ++)
             {
@@ -50,7 +52,7 @@ namespace Terrain
             }
         }
 
-        void Update()
+        public void Update()
         {
             if (_terrainZ - player.transform.position.z < 40)
             {
@@ -62,10 +64,6 @@ namespace Terrain
 
             foreach (GameObject car in _cars)
             {
-                // var carPosition = car.transform.position;
-                // carPosition += car.transform.right * _carSpeeds[(int) carPosition.z + 30];
-                // car.transform.position = carPosition;
-
                 if (Math.Abs(car.transform.position.x - transform.position.x) > 30)
                 {
                     InstantiateCar((int) car.transform.position.z);
@@ -116,8 +114,6 @@ namespace Terrain
                         Quaternion.Euler(0, 0, 0));
                     break;
             }
-            
-            // _carSpeeds.Add(.03f * _random.Next(1, 2));
         }
         
         private TerrainTypes GetTerrainType()
@@ -142,14 +138,14 @@ namespace Terrain
                     
                     break;
                 case TerrainTypes.ROAD:
-                    if (_terrainStreak > 10)
+                    if (_terrainStreak > 8)
                     {
                         return GetTerrainType();
                     }
                     
                     break;
                 case TerrainTypes.RIVER:
-                    if (_terrainStreak > 4)
+                    if (_terrainStreak > 3)
                     {
                         return GetTerrainType();
                     }

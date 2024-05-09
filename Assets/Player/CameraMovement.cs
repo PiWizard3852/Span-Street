@@ -6,13 +6,13 @@ namespace Player
     {
         public GameObject player;
 
-        void Start()
+        public void Start()
         {
             transform.rotation = Quaternion.Euler(30, 0, 0);
             Update();
         }
         
-        void Update()
+        public void Update()
         {
             var cameraTransform = transform;
             

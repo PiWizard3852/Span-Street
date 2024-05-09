@@ -7,7 +7,7 @@ namespace Player
         public bool lastPress;
         public KeyCode lastKey;
         
-        void Start()
+        public void Start()
         {
             var playerTransform = transform;
         
@@ -17,7 +17,7 @@ namespace Player
             lastPress = false;
         }
 
-        void Update()
+        public void Update()
         {
             var playerTransform = transform;
             var position = playerTransform.position;
