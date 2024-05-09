@@ -1,36 +1,47 @@
+using TMPro;
 using UnityEngine;
 
 namespace Player
 {
     public class Controls : MonoBehaviour
     {
-        public bool lastPress;
-        public KeyCode lastKey;
+        public TextMeshProUGUI CurrentScore;
+
+        private GameState _gameState;
+        
+        private bool _lastPress;
+        private KeyCode _lastKey;
         
         public void Start()
         {
+            _gameState = GameObject.FindGameObjectWithTag("GameState").gameObject.GetComponent<GameState>();
+            _gameState.currentScore = CurrentScore;
+
             var playerTransform = transform;
         
             playerTransform.position = new Vector3(0, 1.5f, 0);
             playerTransform.rotation = Quaternion.Euler(0, 180, 0);
 
-            lastPress = false;
+            _lastPress = false;
         }
 
         public void Update()
         {
             var playerTransform = transform;
             var position = playerTransform.position;
-            var rotation = playerTransform.rotation;
+            
+            _gameState._currentScore = (int) position.z;
+            
+            Quaternion rotation;
 
-            if (!Input.GetKey(lastKey))
+            if (!Input.GetKey(_lastKey))
             {
-                lastPress = false;
+                _lastPress = false;
             }
             
             if (Input.GetKey(KeyCode.UpArrow))
             {
-                if (!lastPress)
+                if (!_lastPress)
                 {
                     rotation = Quaternion.Euler(0, 180, 0);
                     playerTransform.rotation = rotation;
@@ -39,13 +50,13 @@ namespace Player
                     playerTransform.position = position;
                 }
 
-                lastPress = true;
-                lastKey = KeyCode.UpArrow;
+                _lastPress = true;
+                _lastKey = KeyCode.UpArrow;
             }
 
             if (Input.GetKey(KeyCode.DownArrow))
             {
-                if (!lastPress)
+                if (!_lastPress)
                 {
                     rotation = Quaternion.Euler(0, 0, 0);
                     playerTransform.rotation = rotation;
@@ -54,13 +65,13 @@ namespace Player
                     playerTransform.position = position;
                 }
 
-                lastPress = true;
-                lastKey = KeyCode.DownArrow;
+                _lastPress = true;
+                _lastKey = KeyCode.DownArrow;
             }
 
             if (Input.GetKey(KeyCode.LeftArrow))
             {
-                if (!lastPress)
+                if (!_lastPress)
                 {
                     rotation = Quaternion.Euler(0, 90, 0);
                     playerTransform.rotation = rotation;
@@ -69,13 +80,13 @@ namespace Player
                     playerTransform.position = position;
                 }
 
-                lastPress = true;
-                lastKey = KeyCode.LeftArrow;
+                _lastPress = true;
+                _lastKey = KeyCode.LeftArrow;
             }
 
             if (Input.GetKey(KeyCode.RightArrow))
             {
-                if (!lastPress)
+                if (!_lastPress)
                 {
                     rotation = Quaternion.Euler(0, 270, 0);
                     playerTransform.rotation = rotation;
@@ -84,8 +95,8 @@ namespace Player
                     playerTransform.position = position;
                 }
 
-                lastPress = true;
-                lastKey = KeyCode.RightArrow;
+                _lastPress = true;
+                _lastKey = KeyCode.RightArrow;
             }
         }
     }

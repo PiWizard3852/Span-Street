@@ -47,7 +47,7 @@
   <ItemGroup>
     <Compile Include="Assets/Vehicles/Car.cs" />
     <Compile Include="Assets/Player/Controls.cs" />
-    <Compile Include="Assets/Player/GameState.cs" />
+    <Compile Include="Assets/GameState.cs" />
     <Compile Include="Assets/Player/CameraMovement.cs" />
     <Compile Include="Assets/Terrain/TerrainGen.cs" />
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
