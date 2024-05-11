@@ -1152,7 +1152,7 @@ Transform:
   m_GameObject: {fileID: 1653141873}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.057, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1222,6 +1222,9 @@ MonoBehaviour:
   yellowCar: {fileID: 7061063271619880530, guid: b559a4b02dcb24e5cad955975924c49f, type: 3}
   greenCar: {fileID: 7061063271619880530, guid: 754dec1790c424123a0abbaaca68e7b4, type: 3}
   blueCar: {fileID: 7061063271619880530, guid: 74bade217d8db4bb1b1c9c44faf16a65, type: 3}
+  log1: {fileID: 5351433380869186908, guid: 54a4518bf5f82405aaa43410354e1c0a, type: 3}
+  log2: {fileID: 8573276715112970042, guid: 81d2c08f8bba9480c991dffdd9f519bc, type: 3}
+  log3: {fileID: 6139723123022654963, guid: fb4afc4a907284281a30b796548182c9, type: 3}
 --- !u!1 &1964076408
 GameObject:
   m_ObjectHideFlags: 0

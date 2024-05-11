@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Car
   - GameState
+  - Log
+  - River
   layers:
   - Default
   - TransparentFX

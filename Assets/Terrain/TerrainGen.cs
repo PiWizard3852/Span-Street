@@ -4,13 +4,6 @@ using Random = System.Random;
 
 namespace Terrain
 {
-    public enum CarTypes
-    {
-        YELLOW,
-        GREEN,
-        BLUE
-    }
-    
     public enum TerrainTypes
     {
         GRASS,
@@ -18,7 +11,21 @@ namespace Terrain
         RIVER,
         RAILROAD
     }
-    
+
+    public enum CarTypes
+    {
+        YELLOW,
+        GREEN,
+        BLUE
+    }
+
+    public enum LogTypes
+    {
+        LOG1,
+        LOG2,
+        LOG3
+    }
+
     public class TerrainGen : MonoBehaviour
     {
         private readonly Random _random = new Random();
@@ -28,6 +35,7 @@ namespace Terrain
         private TerrainTypes _lastTerrainType;
 
         private GameObject[] _cars;
+        private GameObject[] _logs;
 
         public GameObject player;
         
@@ -39,6 +47,10 @@ namespace Terrain
         public GameObject yellowCar;
         public GameObject greenCar;
         public GameObject blueCar;
+
+        public GameObject log1;
+        public GameObject log2;
+        public GameObject log3;
 
         public void Start()
         {
@@ -70,6 +82,17 @@ namespace Terrain
                     Destroy(car);
                 }
             }
+
+            _logs = GameObject.FindGameObjectsWithTag("Log");
+
+            foreach (GameObject log in _logs)
+            {
+                if (Math.Abs(log.transform.position.x - transform.position.x) > 15)
+                {
+                    InstantiateLog((int) log.transform.position.z);
+                    Destroy(log);
+                }
+            }
         }
 
         private void InstantiateLand()
@@ -85,6 +108,7 @@ namespace Terrain
                     break;
                 case TerrainTypes.RIVER:
                     Instantiate(river, new Vector3(0, 0, _terrainZ), Quaternion.Euler(0, 0, 0));
+                    InstantiateLog();
                     break;
                 case TerrainTypes.RAILROAD:
                     Instantiate(railroad, new Vector3(0, 0, _terrainZ), Quaternion.Euler(0, 0, 0));
@@ -111,6 +135,30 @@ namespace Terrain
                     break;
                 case CarTypes.BLUE:
                     Instantiate(blueCar, new Vector3(transform.position.x - _random.Next(10, 40), 2f, carZ),
+                        Quaternion.Euler(0, 0, 0));
+                    break;
+            }
+        }
+
+        private void InstantiateLog()
+        {
+            InstantiateLog(_terrainZ);
+        }
+
+        private void InstantiateLog(int logZ)
+        {
+            switch ((LogTypes) _random.Next(Enum.GetNames(typeof(LogTypes)).Length))
+            {
+                case LogTypes.LOG1:
+                    Instantiate(log1, new Vector3(transform.position.x - _random.Next(10, 40), 2f, logZ),
+                        Quaternion.Euler(0, 0, 0));
+                    break;
+                case LogTypes.LOG2:
+                    Instantiate(log2, new Vector3(transform.position.x - _random.Next(10, 40), 2f, logZ),
+                        Quaternion.Euler(0, 0, 0));
+                    break;
+                case LogTypes.LOG3:
+                    Instantiate(log3, new Vector3(transform.position.x - _random.Next(10, 40), 2f, logZ),
                         Quaternion.Euler(0, 0, 0));
                     break;
             }

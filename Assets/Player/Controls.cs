@@ -1,14 +1,13 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Player
 {
     public class Controls : MonoBehaviour
     {
         public TextMeshProUGUI CurrentScore;
-
         private GameState _gameState;
-        
         private bool _lastPress;
         private KeyCode _lastKey;
         
@@ -97,6 +96,21 @@ namespace Player
 
                 _lastPress = true;
                 _lastKey = KeyCode.RightArrow;
+            }
+        }
+
+        public void OnCollisionEnter(Collision collision)
+        {
+            if(collision.gameObject.tag == "Car")
+            {
+                SceneManager.LoadScene(0);
+                _gameState._endMessage = "Game Lost. Final Score: " + _gameState._currentScore;
+            }
+
+            if(collision.gameObject.tag == "River")
+            {
+                SceneManager.LoadScene(0);
+                _gameState._endMessage = "Game Lost. Final Score: " + _gameState._currentScore;
             }
         }
     }

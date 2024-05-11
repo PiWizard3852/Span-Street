@@ -3,7 +3,18 @@ guid: 5d2e2d3fab0c047ada6e9a6a6a22b15d
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - player: {instanceID: 0}
+  - grass: {instanceID: 0}
+  - road: {instanceID: 0}
+  - river: {instanceID: 0}
+  - railroad: {instanceID: 0}
+  - yellowCar: {instanceID: 0}
+  - greenCar: {instanceID: 0}
+  - blueCar: {instanceID: 0}
+  - log1: {instanceID: 0}
+  - log2: {instanceID: 0}
+  - log3: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
