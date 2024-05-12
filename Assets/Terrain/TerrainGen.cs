@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using Random = System.Random;
+using System.Threading;
 
 namespace Terrain
 {
@@ -36,6 +37,7 @@ namespace Terrain
 
         private GameObject[] _cars;
         private GameObject[] _logs;
+        private GameObject[] _trains;
 
         public GameObject player;
 
@@ -51,7 +53,7 @@ namespace Terrain
         public GameObject log1;
         public GameObject log2;
         public GameObject log3;
-
+        public GameObject train;
         public void Start()
         {
             _terrainStreak = 1;
@@ -73,7 +75,7 @@ namespace Terrain
             foreach (var car in _cars)
                 if (Math.Abs(car.transform.position.x - transform.position.x) > 30)
                 {
-                    InstantiateCar((int)car.transform.position.z);
+                    InstantiateCar((int) car.transform.position.z);
                     Destroy(car);
                 }
 
@@ -82,8 +84,17 @@ namespace Terrain
             foreach (var log in _logs)
                 if (Math.Abs(log.transform.position.x - transform.position.x) > 15)
                 {
-                    InstantiateLog((int)log.transform.position.z);
+                    InstantiateLog((int) log.transform.position.z);
                     Destroy(log);
+                }
+            
+            _trains = GameObject.FindGameObjectsWithTag("Train");
+
+            foreach (var train in _trains)
+                if (Math.Abs(train.transform.position.x - transform.position.x) > 80 && _random.Next() > 0.75)
+                {
+                    InstantiateTrain((int) train.transform.position.z);
+                    Destroy(train);
                 }
         }
 
@@ -104,6 +115,7 @@ namespace Terrain
                     break;
                 case TerrainTypes.Railroad:
                     Instantiate(railroad, new Vector3(0, 0, _terrainZ), Quaternion.Euler(0, 0, 0));
+                    InstantiateTrain();
                     break;
             }
         }
@@ -154,6 +166,17 @@ namespace Terrain
                         Quaternion.Euler(0, 0, 0));
                     break;
             }
+        }
+
+        private void InstantiateTrain()
+        {
+            InstantiateTrain(_terrainZ);
+        }
+
+        private void InstantiateTrain(int trainZ)
+        {
+            Instantiate(train, new Vector3(transform.position.x - _random.Next(10, 40), 1.8f, trainZ),
+                        Quaternion.Euler(0, 0, 0));
         }
 
         private TerrainTypes GetTerrainType()

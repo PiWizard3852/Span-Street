@@ -11,15 +11,15 @@ namespace Vehicles
 
         public void Start()
         {
-            _speed = .025f * _random.Next(1, 2);
+            _speed = .015f * _random.Next(1, 2);
         }
 
         public void Update()
         {
-            var carTransform = transform;
-            var carPosition = carTransform.position;
-            carPosition += carTransform.right * _speed;
-            carTransform.position = carPosition;
+            var logTransform = transform;
+            var logPosition = logTransform.position;
+            logPosition += logTransform.right * _speed;
+            logTransform.position = logPosition;
         }
     }
 }

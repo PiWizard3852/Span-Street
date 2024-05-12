@@ -178,7 +178,7 @@ namespace Player
 
         public void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.CompareTag("Car") || collision.gameObject.CompareTag("River"))
+            if (collision.gameObject.CompareTag("Car") || collision.gameObject.CompareTag("River") || collision.gameObject.tag == "Train")
             {
                 _gameState.totalScore += _gameState.currentScore;
                 

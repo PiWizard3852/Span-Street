@@ -563,6 +563,7 @@ MonoBehaviour:
   log1: {fileID: 5351433380869186908, guid: 54a4518bf5f82405aaa43410354e1c0a, type: 3}
   log2: {fileID: 8573276715112970042, guid: 81d2c08f8bba9480c991dffdd9f519bc, type: 3}
   log3: {fileID: 6139723123022654963, guid: fb4afc4a907284281a30b796548182c9, type: 3}
+  train: {fileID: 7061063271619880530, guid: 609e34404990b4ca6b73ec4d38bd48ee, type: 3}
 --- !u!1 &1800635528
 GameObject:
   m_ObjectHideFlags: 0
