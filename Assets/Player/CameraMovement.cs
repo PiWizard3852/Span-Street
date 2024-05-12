@@ -11,16 +11,16 @@ namespace Player
             transform.rotation = Quaternion.Euler(30, 0, 0);
             Update();
         }
-        
+
         public void Update()
         {
             var cameraTransform = transform;
-            
+
             var cameraPosition = cameraTransform.position;
             var playerPosition = player.transform.position;
-            
+
             cameraPosition = new Vector3(cameraPosition.x, playerPosition.y + 10, playerPosition.z - 12);
-            
+
             cameraTransform.position = cameraPosition;
         }
     }

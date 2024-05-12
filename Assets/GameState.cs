@@ -6,21 +6,19 @@ using UnityEngine.Serialization;
 public class GameState : MonoBehaviour
 {
     public static GameState Instance;
-    
-    public TextMeshProUGUI totalScore;
-    public TextMeshProUGUI currentScore;
-    public TextMeshProUGUI endMessage;
-    
-    private int _totalScore;
-    public int _currentScore;
 
-    public string _endMessage;
+    public TextMeshProUGUI totalScoreText;
+    public TextMeshProUGUI currentScoreText;
+
+    public int totalScore;
+    public int currentScore;
+
+    public bool isOriginal = false;
     
     public void Start()
     {
-        _totalScore = 0;
-        _currentScore = 0;
-        _endMessage = "";
+        totalScore = 0;
+        currentScore = 0;
     }
 
     public void Update()
@@ -28,13 +26,12 @@ public class GameState : MonoBehaviour
         switch (SceneManager.GetActiveScene().name)
         {
             case "Menu":
-                _totalScore += _currentScore;
-                _currentScore = 0;
-                totalScore.text = "" + _totalScore;
-                endMessage.text = _endMessage;
+                totalScoreText.text = "" + totalScore;
+                
                 break;
             case "Game":
-                currentScore.text = "" + _currentScore;
+                currentScoreText.text = "" + currentScore;
+                
                 break;
         }
     }
@@ -43,7 +40,7 @@ public class GameState : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
-        
+
     private void Awake()
     {
         Instance = this;

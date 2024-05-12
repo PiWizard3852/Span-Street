@@ -5,10 +5,10 @@ namespace Vehicles
 {
     public class Car : MonoBehaviour
     {
-        private readonly Random _random = new Random();
-    
+        private readonly Random _random = new();
+
         private float _speed;
-    
+
         public void Start()
         {
             _speed = .04f * _random.Next(1, 2);

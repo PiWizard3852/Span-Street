@@ -5,13 +5,13 @@ namespace Vehicles
 {
     public class Log : MonoBehaviour
     {
-        private readonly Random _random = new Random();
-    
+        private readonly Random _random = new();
+
         private float _speed;
-    
+
         public void Start()
         {
-            _speed = .02f * _random.Next(1, 2);
+            _speed = .025f * _random.Next(1, 2);
         }
 
         public void Update()

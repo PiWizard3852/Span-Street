@@ -8,6 +8,10 @@ TagManager:
   - GameState
   - Log
   - River
+  - Train
+  - Grass
+  - Railroad
+  - Road
   layers:
   - Default
   - TransparentFX

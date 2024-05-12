@@ -6,30 +6,30 @@ namespace Terrain
 {
     public enum TerrainTypes
     {
-        GRASS,
-        ROAD,
-        RIVER,
-        RAILROAD
+        Grass,
+        Road,
+        River,
+        Railroad
     }
 
     public enum CarTypes
     {
-        YELLOW,
-        GREEN,
-        BLUE
+        Yellow,
+        Green,
+        Blue
     }
 
     public enum LogTypes
     {
-        LOG1,
-        LOG2,
-        LOG3
+        One,
+        Two,
+        Three
     }
 
     public class TerrainGen : MonoBehaviour
     {
-        private readonly Random _random = new Random();
-        
+        private readonly Random _random = new();
+
         private int _terrainZ;
         private int _terrainStreak;
         private TerrainTypes _lastTerrainType;
@@ -38,12 +38,12 @@ namespace Terrain
         private GameObject[] _logs;
 
         public GameObject player;
-        
+
         public GameObject grass;
         public GameObject road;
         public GameObject river;
         public GameObject railroad;
-        
+
         public GameObject yellowCar;
         public GameObject greenCar;
         public GameObject blueCar;
@@ -55,13 +55,9 @@ namespace Terrain
         public void Start()
         {
             _terrainStreak = 1;
-            _lastTerrainType = TerrainTypes.GRASS;
-
+            _lastTerrainType = TerrainTypes.Grass;
             
-            for (_terrainZ = -30; _terrainZ < 50; _terrainZ++)
-            {
-                InstantiateLand();
-            }
+            for (_terrainZ = -10; _terrainZ < 50; _terrainZ++) InstantiateLand();
         }
 
         public void Update()
@@ -74,48 +70,44 @@ namespace Terrain
 
             _cars = GameObject.FindGameObjectsWithTag("Car");
 
-            foreach (GameObject car in _cars)
-            {
+            foreach (var car in _cars)
                 if (Math.Abs(car.transform.position.x - transform.position.x) > 30)
                 {
-                    InstantiateCar((int) car.transform.position.z);
+                    InstantiateCar((int)car.transform.position.z);
                     Destroy(car);
                 }
-            }
 
             _logs = GameObject.FindGameObjectsWithTag("Log");
 
-            foreach (GameObject log in _logs)
-            {
+            foreach (var log in _logs)
                 if (Math.Abs(log.transform.position.x - transform.position.x) > 15)
                 {
-                    InstantiateLog((int) log.transform.position.z);
+                    InstantiateLog((int)log.transform.position.z);
                     Destroy(log);
                 }
-            }
         }
 
         private void InstantiateLand()
         {
             switch (GetTerrainType())
             {
-                case TerrainTypes.GRASS:
+                case TerrainTypes.Grass:
                     Instantiate(grass, new Vector3(0, 0, _terrainZ), Quaternion.Euler(0, 0, 0));
                     break;
-                case TerrainTypes.ROAD:
+                case TerrainTypes.Road:
                     Instantiate(road, new Vector3(0, 0, _terrainZ), Quaternion.Euler(0, 0, 0));
                     InstantiateCar();
                     break;
-                case TerrainTypes.RIVER:
+                case TerrainTypes.River:
                     Instantiate(river, new Vector3(0, 0, _terrainZ), Quaternion.Euler(0, 0, 0));
                     InstantiateLog();
                     break;
-                case TerrainTypes.RAILROAD:
+                case TerrainTypes.Railroad:
                     Instantiate(railroad, new Vector3(0, 0, _terrainZ), Quaternion.Euler(0, 0, 0));
                     break;
             }
         }
-        
+
         private void InstantiateCar()
         {
             InstantiateCar(_terrainZ);
@@ -123,18 +115,18 @@ namespace Terrain
 
         private void InstantiateCar(int carZ)
         {
-            switch ((CarTypes) _random.Next(Enum.GetNames(typeof(CarTypes)).Length))
+            switch ((CarTypes)_random.Next(Enum.GetNames(typeof(CarTypes)).Length))
             {
-                case CarTypes.YELLOW:
-                    Instantiate(yellowCar, new Vector3(transform.position.x - _random.Next(10, 40), 2f, carZ),
+                case CarTypes.Yellow:
+                    Instantiate(yellowCar, new Vector3(transform.position.x - _random.Next(10, 40), 1.8f, carZ),
                         Quaternion.Euler(0, 0, 0));
                     break;
-                case CarTypes.GREEN:
-                    Instantiate(greenCar, new Vector3(transform.position.x - _random.Next(10, 40), 2f, carZ),
+                case CarTypes.Green:
+                    Instantiate(greenCar, new Vector3(transform.position.x - _random.Next(10, 40), 1.8f, carZ),
                         Quaternion.Euler(0, 0, 0));
                     break;
-                case CarTypes.BLUE:
-                    Instantiate(blueCar, new Vector3(transform.position.x - _random.Next(10, 40), 2f, carZ),
+                case CarTypes.Blue:
+                    Instantiate(blueCar, new Vector3(transform.position.x - _random.Next(10, 40), 1.8f, carZ),
                         Quaternion.Euler(0, 0, 0));
                     break;
             }
@@ -147,67 +139,70 @@ namespace Terrain
 
         private void InstantiateLog(int logZ)
         {
-            switch ((LogTypes) _random.Next(Enum.GetNames(typeof(LogTypes)).Length))
+            switch ((LogTypes)_random.Next(Enum.GetNames(typeof(LogTypes)).Length))
             {
-                case LogTypes.LOG1:
-                    Instantiate(log1, new Vector3(transform.position.x - _random.Next(10, 40), 2f, logZ),
+                case LogTypes.One:
+                    Instantiate(log1, new Vector3(transform.position.x - _random.Next(10, 20), .6f, logZ),
                         Quaternion.Euler(0, 0, 0));
                     break;
-                case LogTypes.LOG2:
-                    Instantiate(log2, new Vector3(transform.position.x - _random.Next(10, 40), 2f, logZ),
+                case LogTypes.Two:
+                    Instantiate(log2, new Vector3(transform.position.x - _random.Next(10, 20), .6f, logZ),
                         Quaternion.Euler(0, 0, 0));
                     break;
-                case LogTypes.LOG3:
-                    Instantiate(log3, new Vector3(transform.position.x - _random.Next(10, 40), 2f, logZ),
+                case LogTypes.Three:
+                    Instantiate(log3, new Vector3(transform.position.x - _random.Next(10, 20), .6f, logZ),
                         Quaternion.Euler(0, 0, 0));
                     break;
             }
         }
-        
+
         private TerrainTypes GetTerrainType()
         {
+            if (_terrainZ == 0)
+            {
+                if (_lastTerrainType == TerrainTypes.Grass)
+                {
+                    _terrainStreak++;
+                }
+                else
+                {
+                    _lastTerrainType = TerrainTypes.Grass;
+                    _terrainStreak = 1;
+                }
+
+                return _lastTerrainType;
+            }
+
             if (_random.Next(3) == 2)
             {
-                _lastTerrainType = (TerrainTypes) _random.Next(Enum.GetNames(typeof(TerrainTypes)).Length);
+                _lastTerrainType = (TerrainTypes)_random.Next(Enum.GetNames(typeof(TerrainTypes)).Length);
                 _terrainStreak = 1;
             }
             else
             {
                 _terrainStreak++;
             }
-            
+
             switch (_lastTerrainType)
             {
-                case TerrainTypes.GRASS:
-                    if (_terrainStreak > 5)
-                    {
-                        return GetTerrainType();
-                    }
-                    
+                case TerrainTypes.Grass:
+                    if (_terrainStreak > 5) return GetTerrainType();
+
                     break;
-                case TerrainTypes.ROAD:
-                    if (_terrainStreak > 8)
-                    {
-                        return GetTerrainType();
-                    }
-                    
+                case TerrainTypes.Road:
+                    if (_terrainStreak > 8) return GetTerrainType();
+
                     break;
-                case TerrainTypes.RIVER:
-                    if (_terrainStreak > 3)
-                    {
-                        return GetTerrainType();
-                    }
-                    
+                case TerrainTypes.River:
+                    if (_terrainStreak > 3) return GetTerrainType();
+
                     break;
-                case TerrainTypes.RAILROAD:
-                    if (_terrainStreak > 3)
-                    {
-                        return GetTerrainType();
-                    }
+                case TerrainTypes.Railroad:
+                    if (_terrainStreak > 3) return GetTerrainType();
 
                     break;
             }
-            
+
             return _lastTerrainType;
         }
     }
