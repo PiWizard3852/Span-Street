@@ -349,8 +349,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 200963384}
-        m_TargetAssemblyTypeName: GameState, Assembly-CSharp
+      - m_Target: {fileID: 892717480}
+        m_TargetAssemblyTypeName: ManageGameState, Assembly-CSharp
         m_MethodName: Play
         m_Mode: 1
         m_Arguments:

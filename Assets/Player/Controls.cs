@@ -1,7 +1,8 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
+using Vehicles;
 
 namespace Player
 {
@@ -14,6 +15,9 @@ namespace Player
         private bool _lastPress;
         private KeyCode _lastKey;
 
+        private int _lastLog;
+        private float _logOffset;
+        
         public void Start()
         {
             _gameState = GameObject.FindGameObjectWithTag("GameState").gameObject.GetComponent<GameState>();
@@ -82,6 +86,8 @@ namespace Player
                     rotation = Quaternion.Euler(0, 90, 0);
                     playerTransform.rotation = rotation;
 
+                    _logOffset--;
+
                     position = new Vector3(position.x - 1, position.y, position.z);
                     playerTransform.position = position;
                 }
@@ -97,42 +103,14 @@ namespace Player
                     rotation = Quaternion.Euler(0, 270, 0);
                     playerTransform.rotation = rotation;
 
+                    _logOffset++;
+                    
                     position = new Vector3(position.x + 1, position.y, position.z);
                     playerTransform.position = position;
                 }
 
                 _lastPress = true;
                 _lastKey = KeyCode.RightArrow;
-            }
-            
-            var cars = GameObject.FindGameObjectsWithTag("Car");
-
-            foreach (var car in cars)
-            {
-                if (transform.position.z - car.transform.position.z > 15)
-                {
-                    Destroy(car);
-                }
-            }
-            
-            var logs = GameObject.FindGameObjectsWithTag("Log");
-
-            foreach (var log in logs)
-            {
-                if (transform.position.z - log.transform.position.z > 15)
-                {
-                    Destroy(log);
-                }
-            }
-            
-            var trains = GameObject.FindGameObjectsWithTag("Train");
-
-            foreach (var train in trains)
-            {
-                if (transform.position.z - train.transform.position.z > 15)
-                {
-                    Destroy(train);
-                }
             }
             
             var grasses = GameObject.FindGameObjectsWithTag("Grass");
@@ -178,11 +156,35 @@ namespace Player
 
         public void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.CompareTag("Car") || collision.gameObject.CompareTag("River") || collision.gameObject.tag == "Train")
+            if (collision.gameObject.CompareTag("Car") || collision.gameObject.CompareTag("River") || collision.gameObject.CompareTag("Train"))
             {
                 _gameState.totalScore += _gameState.currentScore;
                 
                 SceneManager.LoadScene(0);
+            }
+        }
+
+        public void OnCollisionStay(Collision collision)
+        {
+            if (collision.gameObject.CompareTag("Log"))
+            {
+                if (!_lastLog.Equals(collision.gameObject.GetHashCode()))
+                {
+                    _lastLog = collision.gameObject.GetHashCode();
+                    _logOffset = transform.position.x - collision.transform.position.x;
+                }
+                else
+                {
+                    var playerTransform = transform;
+                    var playerPosition = playerTransform.position;
+                    playerPosition = new Vector3(collision.transform.position.x + _logOffset, playerPosition.y,
+                        playerPosition.z);
+                    playerTransform.position = playerPosition;
+                }
+            }
+            else
+            {
+                _lastLog = -1;
             }
         }
     }

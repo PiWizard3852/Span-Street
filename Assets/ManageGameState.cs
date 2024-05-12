@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ManageGameState : MonoBehaviour
 {
@@ -25,5 +26,10 @@ public class ManageGameState : MonoBehaviour
                 Destroy(gameState);
             }
         }
+    }
+    
+    public void Play()
+    {
+        SceneManager.LoadScene(1);
     }
 }

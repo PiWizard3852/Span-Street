@@ -73,29 +73,44 @@ namespace Terrain
             _cars = GameObject.FindGameObjectsWithTag("Car");
 
             foreach (var car in _cars)
-                if (Math.Abs(car.transform.position.x - transform.position.x) > 30)
+            {
+                if (player.transform.position.z - car.transform.position.z > 15)
                 {
-                    InstantiateCar((int) car.transform.position.z);
+                    Destroy(car);
+                } else if (Math.Abs(car.transform.position.x - transform.position.x) > 30)
+                {
+                    InstantiateCar((int)car.transform.position.z);
                     Destroy(car);
                 }
+            }
 
             _logs = GameObject.FindGameObjectsWithTag("Log");
 
             foreach (var log in _logs)
-                if (Math.Abs(log.transform.position.x - transform.position.x) > 15)
+            {
+                if (player.transform.position.z - log.transform.position.z > 15)
                 {
-                    InstantiateLog((int) log.transform.position.z);
+                    Destroy(log);
+                } else if (Math.Abs(log.transform.position.x - transform.position.x) > 15)
+                {
+                    InstantiateLog((int)log.transform.position.z);
                     Destroy(log);
                 }
-            
+            }
+
             _trains = GameObject.FindGameObjectsWithTag("Train");
 
             foreach (var train in _trains)
-                if (Math.Abs(train.transform.position.x - transform.position.x) > 80 && _random.Next() > 0.75)
+            {
+                if (player.transform.position.z - train.transform.position.z > 15)
                 {
-                    InstantiateTrain((int) train.transform.position.z);
+                    Destroy(train);
+                } else if (Math.Abs(train.transform.position.x - transform.position.x) > 80 && _random.Next() > 0.75)
+                {
+                    InstantiateTrain((int)train.transform.position.z);
                     Destroy(train);
                 }
+            }
         }
 
         private void InstantiateLand()

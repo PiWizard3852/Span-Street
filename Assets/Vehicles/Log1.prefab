@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 8444438194205110728}
   - component: {fileID: 8766166212290553621}
   - component: {fileID: 5692253984538267708}
-  - component: {fileID: 7634642178106170512}
-  - component: {fileID: -3439451812595573770}
   m_Layer: 0
   m_Name: Log1
   m_TagString: Log
@@ -120,27 +118,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38b761353ffe744a88dbd6fbc0faff1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7634642178106170512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5351433380869186908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38b761353ffe744a88dbd6fbc0faff1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-3439451812595573770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5351433380869186908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38b761353ffe744a88dbd6fbc0faff1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  speed: 0

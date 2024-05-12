@@ -1,7 +1,6 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 public class GameState : MonoBehaviour
 {
@@ -34,11 +33,6 @@ public class GameState : MonoBehaviour
                 
                 break;
         }
-    }
-
-    public void Play()
-    {
-        SceneManager.LoadScene(1);
     }
 
     private void Awake()
