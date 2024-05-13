@@ -182,11 +182,8 @@ namespace Terrain
                     log = log3;
                     break;
             }
-            
+
             Instantiate(log, new Vector3(transform.position.x - _random.Next(15, 20), .6f, logZ),
-                Quaternion.Euler(0, 0, 0));
-                    
-            Instantiate(log, new Vector3(transform.position.x - _random.Next(25, 35), .6f, logZ),
                 Quaternion.Euler(0, 0, 0));
         }
 

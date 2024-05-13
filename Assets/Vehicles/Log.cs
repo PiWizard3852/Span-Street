@@ -11,7 +11,7 @@ namespace Vehicles
 
         public void Start()
         {
-            _speed = .015f * _random.Next(1, 2);
+            _speed = .02f * _random.Next(1, 2);
         }
 
         public void Update()

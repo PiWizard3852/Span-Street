@@ -32,4 +32,9 @@ public class ManageGameState : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+
+    public void Shop()
+    {
+        SceneManager.LoadScene(2);
+    }
 }
