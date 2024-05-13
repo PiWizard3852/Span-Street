@@ -158,10 +158,13 @@ namespace Player
         {
             if (collision.gameObject.CompareTag("Car") || collision.gameObject.CompareTag("River") || collision.gameObject.CompareTag("Train"))
             {
-                _gameState.totalScore += _gameState.currentScore;
-                
-                SceneManager.LoadScene(0);
+                Lose();
             }
+        }
+
+        public void OnBecameInvisible()
+        {
+            Lose();
         }
 
         public void OnCollisionStay(Collision collision)
@@ -186,6 +189,13 @@ namespace Player
             {
                 _lastLog = -1;
             }
+        }
+
+        private void Lose()
+        {
+            _gameState.totalScore += _gameState.currentScore;
+                
+            SceneManager.LoadScene(0);
         }
     }
 }

@@ -142,21 +142,23 @@ namespace Terrain
 
         private void InstantiateCar(int carZ)
         {
+            var car = yellowCar;
+            
             switch ((CarTypes)_random.Next(Enum.GetNames(typeof(CarTypes)).Length))
             {
                 case CarTypes.Yellow:
-                    Instantiate(yellowCar, new Vector3(transform.position.x - _random.Next(10, 40), 1.8f, carZ),
-                        Quaternion.Euler(0, 0, 0));
+                    car = yellowCar;
                     break;
                 case CarTypes.Green:
-                    Instantiate(greenCar, new Vector3(transform.position.x - _random.Next(10, 40), 1.8f, carZ),
-                        Quaternion.Euler(0, 0, 0));
+                    car = greenCar;
                     break;
                 case CarTypes.Blue:
-                    Instantiate(blueCar, new Vector3(transform.position.x - _random.Next(10, 40), 1.8f, carZ),
-                        Quaternion.Euler(0, 0, 0));
+                    car = blueCar;
                     break;
             }
+            
+            Instantiate(car, new Vector3(transform.position.x - _random.Next(10, 40), 1.8f, carZ),
+                Quaternion.Euler(0, 0, 0));
         }
 
         private void InstantiateLog()
@@ -166,21 +168,26 @@ namespace Terrain
 
         private void InstantiateLog(int logZ)
         {
+            var log = log1;
+            
             switch ((LogTypes)_random.Next(Enum.GetNames(typeof(LogTypes)).Length))
             {
                 case LogTypes.One:
-                    Instantiate(log1, new Vector3(transform.position.x - _random.Next(10, 20), .6f, logZ),
-                        Quaternion.Euler(0, 0, 0));
+                    log = log1;
                     break;
                 case LogTypes.Two:
-                    Instantiate(log2, new Vector3(transform.position.x - _random.Next(10, 20), .6f, logZ),
-                        Quaternion.Euler(0, 0, 0));
+                    log = log2;
                     break;
                 case LogTypes.Three:
-                    Instantiate(log3, new Vector3(transform.position.x - _random.Next(10, 20), .6f, logZ),
-                        Quaternion.Euler(0, 0, 0));
+                    log = log3;
                     break;
             }
+            
+            Instantiate(log, new Vector3(transform.position.x - _random.Next(15, 20), .6f, logZ),
+                Quaternion.Euler(0, 0, 0));
+                    
+            Instantiate(log, new Vector3(transform.position.x - _random.Next(25, 35), .6f, logZ),
+                Quaternion.Euler(0, 0, 0));
         }
 
         private void InstantiateTrain()
@@ -232,11 +239,11 @@ namespace Terrain
 
                     break;
                 case TerrainTypes.River:
-                    if (_terrainStreak > 3) return GetTerrainType();
+                    if (_terrainStreak > 2) return GetTerrainType();
 
                     break;
                 case TerrainTypes.Railroad:
-                    if (_terrainStreak > 3) return GetTerrainType();
+                    if (_terrainStreak > 2) return GetTerrainType();
 
                     break;
             }
