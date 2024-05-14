@@ -72,45 +72,48 @@ namespace Terrain
                 InstantiateLand();
             }
 
-            _cars = GameObject.FindGameObjectsWithTag("Car");
-
-            foreach (var car in _cars)
+            if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                if (player.transform.position.z - car.transform.position.z > 15)
+                _cars = GameObject.FindGameObjectsWithTag("Car");
+
+                foreach (var car in _cars)
                 {
-                    Destroy(car);
-                } else if (car.transform.position.x - transform.position.x > 20)
-                {
-                    InstantiateCar(1, (int)car.transform.position.z);
-                    Destroy(car);
+                    if (player.transform.position.z - car.transform.position.z > 15)
+                    {
+                        Destroy(car);
+                    } else if (car.transform.position.x - transform.position.x > 20)
+                    {
+                        InstantiateCar(1, (int)car.transform.position.z);
+                        Destroy(car);
+                    }
                 }
-            }
 
-            _logs = GameObject.FindGameObjectsWithTag("Log");
+                _logs = GameObject.FindGameObjectsWithTag("Log");
 
-            foreach (var log in _logs)
-            {
-                if (player.transform.position.z - log.transform.position.z > 15)
+                foreach (var log in _logs)
                 {
-                    Destroy(log);
-                } else if (log.transform.position.x - transform.position.x > 20)
-                {
-                    InstantiateLog(1, (int)log.transform.position.z);
-                    Destroy(log);
+                    if (player.transform.position.z - log.transform.position.z > 15)
+                    {
+                        Destroy(log);
+                    } else if (log.transform.position.x - transform.position.x > 20)
+                    {
+                        InstantiateLog(1, (int)log.transform.position.z);
+                        Destroy(log);
+                    }
                 }
-            }
 
-            _trains = GameObject.FindGameObjectsWithTag("Train");
+                _trains = GameObject.FindGameObjectsWithTag("Train");
 
-            foreach (var train in _trains)
-            {
-                if (player.transform.position.z - train.transform.position.z > 15)
+                foreach (var train in _trains)
                 {
-                    Destroy(train);
-                } else if (train.transform.position.x - transform.position.x > 25)
-                {
-                    InstantiateTrain((int)train.transform.position.z);
-                    Destroy(train);
+                    if (player.transform.position.z - train.transform.position.z > 15)
+                    {
+                        Destroy(train);
+                    } else if (train.transform.position.x - transform.position.x > 25)
+                    {
+                        InstantiateTrain((int)train.transform.position.z);
+                        Destroy(train);
+                    }
                 }
             }
         }

@@ -11,10 +11,7 @@ namespace Player
         public TextMeshProUGUI currentScoreText;
         
         private GameState _gameState;
-            
-        private bool _lastPress;
-        private KeyCode _lastKey;
-
+        
         private int _lastLog;
         private float _logOffset;
 
@@ -33,8 +30,6 @@ namespace Player
 
             playerTransform.position = new Vector3(0, 1.5f, 0);
             playerTransform.rotation = Quaternion.Euler(0, 180, 0);
-
-            _lastPress = false;
         }
 
         public void Update()
@@ -48,111 +43,85 @@ namespace Player
             }
             
             Quaternion rotation;
-
-            if (!Input.GetKey(_lastKey)) _lastPress = false;
-
-            if (Input.GetKey(KeyCode.UpArrow))
-            {
-                if (!_lastPress)
-                {
-                    rotation = Quaternion.Euler(0, 180, 0);
-                    playerTransform.rotation = rotation;
-
-                    position = new Vector3(position.x, position.y, position.z + 1);
-                    playerTransform.position = position;
-                }
-
-                _lastPress = true;
-                _lastKey = KeyCode.UpArrow;
-            }
-
-            if (Input.GetKey(KeyCode.DownArrow) && _gameState.currentScore - transform.position.z < 3)
-            {
-                if (!_lastPress)
-                {
-                    rotation = Quaternion.Euler(0, 0, 0);
-                    playerTransform.rotation = rotation;
-
-                    position = new Vector3(position.x, position.y, position.z - 1);
-                    playerTransform.position = position;
-                }
-
-                _lastPress = true;
-                _lastKey = KeyCode.DownArrow;
-            }
-
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                if (!_lastPress)
-                {
-                    rotation = Quaternion.Euler(0, 90, 0);
-                    playerTransform.rotation = rotation;
-
-                    _logOffset--;
-
-                    position = new Vector3(position.x - 1, position.y, position.z);
-                    playerTransform.position = position;
-                }
-
-                _lastPress = true;
-                _lastKey = KeyCode.LeftArrow;
-            }
-
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                if (!_lastPress)
-                {
-                    rotation = Quaternion.Euler(0, 270, 0);
-                    playerTransform.rotation = rotation;
-
-                    _logOffset++;
-                    
-                    position = new Vector3(position.x + 1, position.y, position.z);
-                    playerTransform.position = position;
-                }
-
-                _lastPress = true;
-                _lastKey = KeyCode.RightArrow;
-            }
             
-            var grasses = GameObject.FindGameObjectsWithTag("Grass");
-
-            foreach (var grass in grasses)
+            if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                if (transform.position.z - grass.transform.position.z > 15)
+                rotation = Quaternion.Euler(0, 180, 0);
+                playerTransform.rotation = rotation;
+
+                position = new Vector3(position.x, position.y, position.z + 1);
+                playerTransform.position = position;
+                
+                var grasses = GameObject.FindGameObjectsWithTag("Grass");
+
+                foreach (var grass in grasses)
                 {
-                    Destroy(grass);
+                    if (transform.position.z - grass.transform.position.z > 15)
+                    {
+                        Destroy(grass);
+                    }
+                }
+            
+                var roads = GameObject.FindGameObjectsWithTag("Road");
+
+                foreach (var road in roads)
+                {
+                    if (transform.position.z - road.transform.position.z > 15)
+                    {
+                        Destroy(road);
+                    }
+                }
+            
+                var rivers = GameObject.FindGameObjectsWithTag("River");
+
+                foreach (var river in rivers)
+                {
+                    if (transform.position.z - river.transform.position.z > 15)
+                    {
+                        Destroy(river);
+                    }
+                }
+            
+                var railroads = GameObject.FindGameObjectsWithTag("Railroad");
+
+                foreach (var railroad in railroads)
+                {
+                    if (transform.position.z - railroad.transform.position.z > 15)
+                    {
+                        Destroy(railroad);
+                    }
                 }
             }
-            
-            var roads = GameObject.FindGameObjectsWithTag("Road");
 
-            foreach (var road in roads)
+            if (Input.GetKeyDown(KeyCode.DownArrow) && _gameState.currentScore - transform.position.z < 3)
             {
-                if (transform.position.z - road.transform.position.z > 15)
-                {
-                    Destroy(road);
-                }
+                rotation = Quaternion.Euler(0, 0, 0);
+                playerTransform.rotation = rotation;
+
+                position = new Vector3(position.x, position.y, position.z - 1);
+                playerTransform.position = position;
             }
-            
-            var rivers = GameObject.FindGameObjectsWithTag("River");
 
-            foreach (var river in rivers)
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                if (transform.position.z - river.transform.position.z > 15)
-                {
-                    Destroy(river);
-                }
+                rotation = Quaternion.Euler(0, 90, 0);
+                playerTransform.rotation = rotation;
+
+                _logOffset--;
+
+                position = new Vector3(position.x - 1, position.y, position.z);
+                playerTransform.position = position;
             }
-            
-            var railroads = GameObject.FindGameObjectsWithTag("Railroad");
 
-            foreach (var railroad in railroads)
+            if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                if (transform.position.z - railroad.transform.position.z > 15)
-                {
-                    Destroy(railroad);
-                }
+                rotation = Quaternion.Euler(0, 270, 0);
+                playerTransform.rotation = rotation;
+
+                _logOffset++;
+                
+                position = new Vector3(position.x + 1, position.y, position.z);
+                playerTransform.position = position;
             }
         }
 
