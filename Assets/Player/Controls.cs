@@ -17,6 +17,8 @@ namespace Player
 
         private int _lastLog;
         private float _logOffset;
+
+        private bool _lost;
         
         public void Start()
         {
@@ -193,9 +195,14 @@ namespace Player
 
         private void Lose()
         {
-            _gameState.totalScore += _gameState.currentScore;
+            if (!_lost)
+            {
+                _gameState.totalScore += _gameState.currentScore;
                 
-            SceneManager.LoadScene(0);
+                SceneManager.LoadScene(0);
+            }
+
+            _lost = true;
         }
     }
 }

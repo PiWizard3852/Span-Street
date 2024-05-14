@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -5,8 +6,8 @@ using UnityEngine.SceneManagement;
 public class ManageGameState : MonoBehaviour
 {
     public TextMeshProUGUI totalScoreText;
-    
-    void Start()
+
+    public void Start()
     {
         var gameStates = GameObject.FindGameObjectsWithTag("GameState");
 
@@ -14,7 +15,7 @@ public class ManageGameState : MonoBehaviour
         {
             return;
         }
-        
+
         foreach (var gameState in gameStates)
         {
             if (gameState.GetComponent<GameState>().isOriginal)
@@ -27,7 +28,7 @@ public class ManageGameState : MonoBehaviour
             }
         }
     }
-    
+
     public void Play()
     {
         SceneManager.LoadScene(1);
