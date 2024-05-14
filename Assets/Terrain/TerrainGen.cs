@@ -1,7 +1,7 @@
 using System;
+using Player;
 using UnityEngine;
 using Random = System.Random;
-using System.Threading;
 
 namespace Terrain
 {
@@ -40,7 +40,7 @@ namespace Terrain
         private GameObject[] _trains;
 
         public GameObject player;
-
+        
         public GameObject grass;
         public GameObject road;
         public GameObject river;
@@ -53,13 +53,15 @@ namespace Terrain
         public GameObject log1;
         public GameObject log2;
         public GameObject log3;
+        
         public GameObject train;
+        
         public void Start()
         {
             _terrainStreak = 1;
             _lastTerrainType = TerrainTypes.Grass;
             
-            for (_terrainZ = -10; _terrainZ < 50; _terrainZ++) InstantiateLand();
+            for (_terrainZ = -10; _terrainZ < 70; _terrainZ++) InstantiateLand();
         }
 
         public void Update()
@@ -77,9 +79,9 @@ namespace Terrain
                 if (player.transform.position.z - car.transform.position.z > 15)
                 {
                     Destroy(car);
-                } else if (Math.Abs(car.transform.position.x - transform.position.x) > 30)
+                } else if (car.transform.position.x - transform.position.x > 20)
                 {
-                    InstantiateCar((int)car.transform.position.z);
+                    InstantiateCar(1, (int)car.transform.position.z);
                     Destroy(car);
                 }
             }
@@ -91,9 +93,9 @@ namespace Terrain
                 if (player.transform.position.z - log.transform.position.z > 15)
                 {
                     Destroy(log);
-                } else if (Math.Abs(log.transform.position.x - transform.position.x) > 15)
+                } else if (log.transform.position.x - transform.position.x > 20)
                 {
-                    InstantiateLog((int)log.transform.position.z);
+                    InstantiateLog(1, (int)log.transform.position.z);
                     Destroy(log);
                 }
             }
@@ -105,7 +107,7 @@ namespace Terrain
                 if (player.transform.position.z - train.transform.position.z > 15)
                 {
                     Destroy(train);
-                } else if (Math.Abs(train.transform.position.x - transform.position.x) > 80 && _random.Next() > 0.75)
+                } else if (train.transform.position.x - transform.position.x > 25)
                 {
                     InstantiateTrain((int)train.transform.position.z);
                     Destroy(train);
@@ -119,28 +121,40 @@ namespace Terrain
             {
                 case TerrainTypes.Grass:
                     Instantiate(grass, new Vector3(0, 0, _terrainZ), Quaternion.Euler(0, 0, 0));
+                    
                     break;
                 case TerrainTypes.Road:
                     Instantiate(road, new Vector3(0, 0, _terrainZ), Quaternion.Euler(0, 0, 0));
-                    InstantiateCar();
+                    InstantiateCar(1);
+                    
+                    if (_random.Next(0, 5) > 3)
+                    {
+                        InstantiateCar(2);
+                    }
+                    
                     break;
                 case TerrainTypes.River:
                     Instantiate(river, new Vector3(0, 0, _terrainZ), Quaternion.Euler(0, 0, 0));
-                    InstantiateLog();
+                    
+                    InstantiateLog(1);
+                    InstantiateLog(2);
+                    
                     break;
                 case TerrainTypes.Railroad:
                     Instantiate(railroad, new Vector3(0, 0, _terrainZ), Quaternion.Euler(0, 0, 0));
+                    
                     InstantiateTrain();
+                    
                     break;
             }
         }
 
-        private void InstantiateCar()
+        private void InstantiateCar(int cardinal)
         {
-            InstantiateCar(_terrainZ);
+            InstantiateCar(cardinal, _terrainZ);
         }
 
-        private void InstantiateCar(int carZ)
+        private void InstantiateCar(int cardinal, int carZ)
         {
             var car = yellowCar;
             
@@ -157,16 +171,16 @@ namespace Terrain
                     break;
             }
             
-            Instantiate(car, new Vector3(transform.position.x - _random.Next(10, 40), 1.8f, carZ),
+            Instantiate(car, new Vector3(transform.position.x - _random.Next(15, 25) - _random.Next(10, 20) * (cardinal - 1), 1.8f, carZ),
                 Quaternion.Euler(0, 0, 0));
         }
-
-        private void InstantiateLog()
+        
+        private void InstantiateLog(int cardinal)
         {
-            InstantiateLog(_terrainZ);
+            InstantiateLog(cardinal, _terrainZ);
         }
 
-        private void InstantiateLog(int logZ)
+        private void InstantiateLog(int cardinal, int logZ)
         {
             var log = log1;
             
@@ -183,7 +197,7 @@ namespace Terrain
                     break;
             }
 
-            Instantiate(log, new Vector3(transform.position.x - _random.Next(15, 20), .6f, logZ),
+            Instantiate(log, new Vector3(transform.position.x - _random.Next(15, 20) - _random.Next(5, 15) * (cardinal - 1), .6f, logZ),
                 Quaternion.Euler(0, 0, 0));
         }
 

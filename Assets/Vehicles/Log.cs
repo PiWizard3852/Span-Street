@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Random = System.Random;
 
@@ -6,12 +7,14 @@ namespace Vehicles
     public class Log : MonoBehaviour
     {
         private readonly Random _random = new();
-
+        private GameState _gameState;
+        
         private float _speed;
 
         public void Start()
         {
-            _speed = .02f * _random.Next(1, 2);
+            _gameState = GameObject.FindGameObjectWithTag("GameState").gameObject.GetComponent<GameState>();
+            _speed = .025f * _random.Next(1, 2) + .02f * Math.Min(_gameState.totalScore + _gameState.currentScore, 300) / 300;
         }
 
         public void Update()
