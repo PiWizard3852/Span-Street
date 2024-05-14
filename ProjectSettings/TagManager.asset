@@ -12,6 +12,8 @@ TagManager:
   - Grass
   - Railroad
   - Road
+  - Event
+  - Button
   layers:
   - Default
   - TransparentFX
