@@ -51,7 +51,12 @@ namespace Player
 
                 position = new Vector3(position.x, position.y, position.z + 1);
                 playerTransform.position = position;
-                
+
+                if (Physics.Raycast(transform.position, -Vector3.up, out var hit, 100.0f) && hit.transform.CompareTag("River"))
+                {
+                    Lose();
+                }
+
                 var grasses = GameObject.FindGameObjectsWithTag("Grass");
 
                 foreach (var grass in grasses)
