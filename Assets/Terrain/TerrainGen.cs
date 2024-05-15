@@ -1,6 +1,7 @@
 using System;
 using Player;
 using UnityEngine;
+using Vehicles;
 using Random = System.Random;
 
 namespace Terrain
@@ -81,7 +82,7 @@ namespace Terrain
                     if (player.transform.position.z - car.transform.position.z > 15)
                     {
                         Destroy(car);
-                    } else if (car.transform.position.x - transform.position.x > 20)
+                    } else if (car.GetComponent<Car>().invisible)
                     {
                         InstantiateCar(1, (int)car.transform.position.z);
                         Destroy(car);
@@ -95,7 +96,7 @@ namespace Terrain
                     if (player.transform.position.z - log.transform.position.z > 15)
                     {
                         Destroy(log);
-                    } else if (log.transform.position.x - transform.position.x > 20)
+                    } else if (log.GetComponent<Log>().invisible)
                     {
                         InstantiateLog(1, (int)log.transform.position.z);
                         Destroy(log);
@@ -109,7 +110,7 @@ namespace Terrain
                     if (player.transform.position.z - train.transform.position.z > 15)
                     {
                         Destroy(train);
-                    } else if (train.transform.position.x - transform.position.x > 25)
+                    } else if (train.GetComponent<Train>().invisible)
                     {
                         InstantiateTrain((int)train.transform.position.z);
                         Destroy(train);
