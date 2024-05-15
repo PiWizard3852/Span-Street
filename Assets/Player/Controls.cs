@@ -1,8 +1,6 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Vehicles;
 
 namespace Player
 {
@@ -11,10 +9,12 @@ namespace Player
         public TextMeshProUGUI currentScoreText;
         
         private GameState _gameState;
+
+        private bool _onLog;
         
         private int _lastLog;
         private float _logOffset;
-
+        
         private bool _lost;
         
         public void Start()
@@ -30,6 +30,9 @@ namespace Player
 
             playerTransform.position = new Vector3(0, 1.5f, 0);
             playerTransform.rotation = Quaternion.Euler(0, 180, 0);
+
+            _onLog = false;
+            _lost = false;
         }
 
         public void Update()
@@ -52,7 +55,7 @@ namespace Player
                 position = new Vector3(position.x, position.y, position.z + 1);
                 playerTransform.position = position;
 
-                if (Physics.Raycast(transform.position, -Vector3.up, out var hit, 100.0f) && hit.transform.CompareTag("River"))
+                if (Physics.Raycast(transform.position, -Vector3.up, out var hit, 100.0f) && hit.transform.CompareTag("River") && !_onLog)
                 {
                     Lose();
                 }
@@ -135,6 +138,11 @@ namespace Player
             if (collision.gameObject.CompareTag("Car") || collision.gameObject.CompareTag("River") || collision.gameObject.CompareTag("Train"))
             {
                 Lose();
+            }
+
+            if (collision.gameObject.CompareTag("Log"))
+            {
+                _onLog = true;
             }
         }
 
