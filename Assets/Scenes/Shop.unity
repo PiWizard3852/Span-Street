@@ -229,7 +229,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 250, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &105301113
 MonoBehaviour:
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ab8de50c6ed4e868658208f04759af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemID: 0
+  ItemID: 2
   PriceText: {fileID: 237318730}
   ShopManager: {fileID: 1196490778}
   isBought: 0
@@ -290,19 +290,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 105301115}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11500000, guid: 2b1ac788f0ba74527a25eee6eb76387f, type: 3}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &105301115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -423,8 +411,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1531616344}
   m_HandleRect: {fileID: 1531616343}
   m_Direction: 0
-  m_Value: -0.0000022888185
-  m_Size: 0.96
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -505,7 +493,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 250, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &219574506
 MonoBehaviour:
@@ -519,7 +507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ab8de50c6ed4e868658208f04759af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemID: 0
+  ItemID: 3
   PriceText: {fileID: 237318730}
   ShopManager: {fileID: 1196490778}
   isBought: 0
@@ -567,13 +555,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 2b1ac788f0ba74527a25eee6eb76387f, type: 3}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 1196490781}
+        m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
+        m_MethodName: Buy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -651,7 +639,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00012207031, y: 394}
+  m_AnchoredPosition: {x: -936, y: 882}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &237318730
@@ -674,7 +662,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Coins: $0'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -923,7 +911,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 250, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1160021551
 MonoBehaviour:
@@ -937,7 +925,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ab8de50c6ed4e868658208f04759af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemID: 0
+  ItemID: 1
   PriceText: {fileID: 237318730}
   ShopManager: {fileID: 1196490778}
   isBought: 0
@@ -985,13 +973,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 2b1ac788f0ba74527a25eee6eb76387f, type: 3}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 1196490781}
+        m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
+        m_MethodName: Buy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1081,6 +1069,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coins: 0
   CoinsText: {fileID: 237318730}
+  _player: {fileID: 0}
+  skin1: {fileID: 2100000, guid: 2d0d88fa0917443c5832a9f377385fed, type: 2}
+  skin2: {fileID: 2100000, guid: d7888996e3bcc45beaa3f232656d9b7b, type: 2}
+  skin3: {fileID: 2100000, guid: 2d9beefd8b5b54d5c8c7d89316ced145, type: 2}
 --- !u!1 &1222074538
 GameObject:
   m_ObjectHideFlags: 0
@@ -1335,7 +1327,7 @@ RectTransform:
   m_GameObject: {fileID: 1378469231}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1838605506}
@@ -1347,8 +1339,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.011197916, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -42.999584, y: -0.00024414062}
-  m_SizeDelta: {x: 0, y: -1}
+  m_AnchoredPosition: {x: -42.999348, y: 0}
+  m_SizeDelta: {x: 0, y: -0.99975586}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1378469233
 MonoBehaviour:
@@ -1737,7 +1729,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1838605505}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1747,7 +1739,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 250, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1838605507
 MonoBehaviour:
@@ -1793,13 +1785,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 2b1ac788f0ba74527a25eee6eb76387f, type: 3}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 1196490781}
+        m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
+        m_MethodName: Buy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2129,7 +2121,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 250, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2055229730
 MonoBehaviour:
@@ -2143,7 +2135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ab8de50c6ed4e868658208f04759af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemID: 0
+  ItemID: 4
   PriceText: {fileID: 237318730}
   ShopManager: {fileID: 1196490778}
   isBought: 0
@@ -2191,13 +2183,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 2b1ac788f0ba74527a25eee6eb76387f, type: 3}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 1196490781}
+        m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
+        m_MethodName: Buy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2361,7 +2353,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 1.7991943}
+  m_margin: {x: 0, y: 0, z: 0, w: 11.311096}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2413,7 +2405,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00012207, y: -0}
+  m_AnchoredPosition: {x: 958, y: -540}
   m_SizeDelta: {x: 3840, y: 2160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2079487134

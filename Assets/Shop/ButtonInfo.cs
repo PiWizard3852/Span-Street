@@ -11,8 +11,8 @@ public class ButtonInfo : MonoBehaviour
     public GameObject ShopManager;
     public bool isBought = false;
 
-    void Update()
+    public void Start()
     {
-        PriceText.text = "Price: $" + ShopManager.GetComponent<ShopManager>().shopItems[2, ItemID].ToString();
+        PriceText.text = "Price: $" + ShopManager.GetComponent<ShopManager>().shopItems[0, ItemID].ToString();
     }
 }
