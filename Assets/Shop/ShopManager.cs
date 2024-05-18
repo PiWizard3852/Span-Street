@@ -13,7 +13,7 @@ namespace Shop
         public int _coins;
         public TextMeshProUGUI _coinsText;
         
-        private GameState _gameState;
+        public GameState _gameState;
     
         public Material _skin1;
         public Material _skin2;
@@ -50,7 +50,7 @@ namespace Shop
             _skins[0, 4] = _skin5;
         }
 
-        private void Buy(GameObject clickedButton)
+        public void Buy(GameObject clickedButton)
         {
             var _buttonInfo = clickedButton.GetComponent<ItemInfo>();
 
@@ -63,12 +63,12 @@ namespace Shop
                 var _button = clickedButton.GetComponent<Button>();
                 _button.onClick.RemoveAllListeners();
                 _button.onClick.AddListener(() => ChangeSkin(_buttonInfo.ItemID));
-            }
 
             UpdateButtonView(clickedButton);
+            }
         }
 
-        private void ChangeSkin(int itemID)
+        public void ChangeSkin(int itemID)
         {
             _gameState.currentSkin = _skins[0, itemID];
 
@@ -82,7 +82,7 @@ namespace Shop
             }
         }
 
-        private void UpdateButtonView(GameObject buttonObject)
+        public void UpdateButtonView(GameObject buttonObject)
         {
             var _buttonInfo = buttonObject.GetComponent<ItemInfo>();
             var _button = buttonObject.GetComponent<Button>();

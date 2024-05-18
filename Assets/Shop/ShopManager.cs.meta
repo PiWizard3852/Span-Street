@@ -4,14 +4,13 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - coinsText: {instanceID: 0}
-  - buttonInfo: {instanceID: 0}
-  - enableButtonInfo: {instanceID: 0}
-  - skin1: {instanceID: 0}
-  - skin2: {instanceID: 0}
-  - skin3: {instanceID: 0}
-  - skin4: {instanceID: 0}
-  - skin5: {instanceID: 0}
+  - _coinsText: {instanceID: 0}
+  - _gameState: {instanceID: 0}
+  - _skin1: {fileID: 2100000, guid: 2d0d88fa0917443c5832a9f377385fed, type: 2}
+  - _skin2: {fileID: 2100000, guid: d7888996e3bcc45beaa3f232656d9b7b, type: 2}
+  - _skin3: {fileID: 2100000, guid: 2d9beefd8b5b54d5c8c7d89316ced145, type: 2}
+  - _skin4: {instanceID: 0}
+  - _skin5: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

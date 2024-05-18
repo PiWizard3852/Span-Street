@@ -266,6 +266,7 @@ MonoBehaviour:
   totalScore: 0
   currentScore: 0
   isOriginal: 0
+  currentSkin: {fileID: 0}
 --- !u!1 &234842184
 GameObject:
   m_ObjectHideFlags: 0

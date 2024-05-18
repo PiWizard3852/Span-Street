@@ -140,11 +140,6 @@ namespace Player
             {
                 _onLog = true;
             }
-
-            // if (collision.gameObject.CompareTag("Coin"))
-            // {
-            //     
-            // }
         }
 
         public void OnBecameInvisible()
