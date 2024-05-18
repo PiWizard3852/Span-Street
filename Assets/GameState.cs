@@ -6,14 +6,12 @@ using UnityEngine.SceneManagement;
 public class GameState : MonoBehaviour
 {
     public static GameState Instance;
-
     public TextMeshProUGUI totalScoreText;
     public TextMeshProUGUI currentScoreText;
-
     public int totalScore;
     public int currentScore;
-
     public bool isOriginal = false;
+
     
     public void Start()
     {

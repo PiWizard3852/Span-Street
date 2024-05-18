@@ -13,7 +13,8 @@ TagManager:
   - Railroad
   - Road
   - Event
-  - Button
+  - ItemButton
+  - EnableButton
   layers:
   - Default
   - TransparentFX

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class ButtonInfo : MonoBehaviour
+public class ItemInfo : MonoBehaviour
 {
     public int ItemID;
     public TextMeshProUGUI PriceText;
