@@ -11,9 +11,10 @@ public class ItemInfo : MonoBehaviour
     public TextMeshProUGUI PriceText;
     public GameObject ShopManager;
     public bool isBought = false;
+    public bool isEquipped = false;
 
-    public void Start()
-    {
-        PriceText.text = "Price: $" + ShopManager.GetComponent<ShopManager>().ShopItems[0, ItemID].ToString();
-    }
+    // public void Start()
+    // {
+    //     PriceText.text = "Price: $" + ShopManager.GetComponent<ShopManager>()._shopItems[0, ItemID].ToString();
+    // }
 }
