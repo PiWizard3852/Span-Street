@@ -3,7 +3,15 @@ guid: 2b1ac788f0ba74527a25eee6eb76387f
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - coinsText: {instanceID: 0}
+  - buttonInfo: {instanceID: 0}
+  - enableButtonInfo: {instanceID: 0}
+  - skin1: {instanceID: 0}
+  - skin2: {instanceID: 0}
+  - skin3: {instanceID: 0}
+  - skin4: {instanceID: 0}
+  - skin5: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

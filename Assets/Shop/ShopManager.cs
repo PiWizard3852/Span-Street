@@ -1,82 +1,83 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using TMPro;
 
-public class ShopManager : MonoBehaviour
+namespace Shop
 {
-    public int[,] shopItems = new int[1, 5];
-    public Material[,] skins = new Material[1, 5];
-    public int coins;
-    public TextMeshProUGUI CoinsText;
-    public GameState gameState;
-    public ItemInfo buttonInfo;
-    public EnableInfo enableButtonInfo;
-    public Material skin1;
-    public Material skin2;
-    public Material skin3;
-    public Material skin4;
-    public Material skin5;
-
-    public void Start()
+    public class ShopManager : MonoBehaviour
     {
-        coins = 100;
-        CoinsText.text = "Coins: " + coins;
+        public readonly int[,] ShopItems = new int[1, 5];
+        private readonly Material[,] _skins = new Material[1, 5];
+        
+        public int coins;
+        public TextMeshProUGUI coinsText;
+        
+        private GameState _gameState;
+        
+        public ItemInfo buttonInfo;
+        public EnableInfo enableButtonInfo;
+    
+        public Material skin1;
+        public Material skin2;
+        public Material skin3;
+        public Material skin4;
+        public Material skin5;
 
-        GameObject[] itemButtons = GameObject.FindGameObjectsWithTag("ItemButton");
-        foreach (GameObject buttonObject in itemButtons)
+        public void Start()
         {
-            Button button = buttonObject.GetComponent<Button>();
-            button.onClick.AddListener(() => Buy(buttonObject));
+            _gameState = GameObject.FindGameObjectWithTag("GameState").gameObject.GetComponent<GameState>();
+            
+            coins = 100;
+            coinsText.text = "Coins: " + coins;
+
+            var itemButtons = GameObject.FindGameObjectsWithTag("ItemButton");
+            
+            foreach (var buttonObject in itemButtons)
+            {
+                buttonObject.GetComponent<Button>().onClick.AddListener(() => Buy(buttonObject));
+            }
+
+            var enableButtons = GameObject.FindGameObjectsWithTag("EnableButton");
+            
+            foreach (var buttonObject in enableButtons)
+            {
+                buttonObject.GetComponent<Button>().onClick.AddListener(() => ChangeSkin(buttonObject));
+            }
+
+            ShopItems[0, 0] = 10;
+            ShopItems[0, 1] = 20;
+            ShopItems[0, 2] = 30;
+            ShopItems[0, 3] = 40;
+            ShopItems[0, 4] = 50;
+
+            _skins[0, 0] = skin1;
+            _skins[0, 1] = skin2;
+            _skins[0, 2] = skin3;
+            _skins[0, 3] = skin4;
+            _skins[0, 4] = skin5;
         }
 
-        GameObject[] enableButtons = GameObject.FindGameObjectsWithTag("EnableButton");
-        foreach (GameObject buttonObject in enableButtons)
+        private void Buy(GameObject clickedButton)
         {
-            Button button = buttonObject.GetComponent<Button>();
-            button.onClick.AddListener(() => ChangeSkin(buttonObject));
+            buttonInfo = clickedButton.GetComponent<ItemInfo>();
+
+            if (coins >= ShopItems[0, buttonInfo.ItemID])
+            {
+                coins -= ShopItems[0, buttonInfo.ItemID];
+                coinsText.text = "Coins: $" + coins.ToString();
+                buttonInfo.isBought = true;
+            }
         }
 
-        shopItems[0, 0] = 10;
-        shopItems[0, 1] = 20;
-        shopItems[0, 2] = 30;
-        shopItems[0, 3] = 40;
-        shopItems[0, 4] = 50;
-
-        skins[0, 0] = skin1;
-        skins[0, 1] = skin2;
-        skins[0, 2] = skin3;
-        skins[0, 3] = skin4;
-        skins[0, 4] = skin5;
-
-    }
-
-    public void Buy(GameObject clickedButton)
-    {
-        buttonInfo = clickedButton.GetComponent<ItemInfo>();
-        int buttonID = buttonInfo.ItemID;
-
-        if (coins >= shopItems[0, buttonID])
+        private void ChangeSkin(GameObject button)
         {
-            coins -= shopItems[0, buttonID];
-            CoinsText.text = "Coins: $" + coins.ToString();
-            buttonInfo.isBought = true;
+            _gameState.currentSkin = _skins[0, button.GetComponent<EnableInfo>().EnableID];
         }
-    }
 
-    public void ChangeSkin(GameObject clickedButton)
-    {
-        enableButtonInfo = clickedButton.GetComponent<EnableInfo>();
-        int buttonID = enableButtonInfo.EnableID;
-
-        Material newSkin = skins[0, buttonID];
-       // player.GetComponent<MeshRenderer>().material = newSkin;
-    }
-
-    public void ReturnHome()
-    {
-        SceneManager.LoadScene(0);
+        public void ReturnHome()
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 }

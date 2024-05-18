@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Shop;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -13,6 +14,6 @@ public class ItemInfo : MonoBehaviour
 
     public void Start()
     {
-        PriceText.text = "Price: $" + ShopManager.GetComponent<ShopManager>().shopItems[0, ItemID].ToString();
+        PriceText.text = "Price: $" + ShopManager.GetComponent<ShopManager>().ShopItems[0, ItemID].ToString();
     }
 }

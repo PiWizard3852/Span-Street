@@ -25,7 +25,9 @@ namespace Player
             _gameState.currentScore = 0;
             
             _gameState.isOriginal = true;
-
+            
+            GetComponent<MeshRenderer>().material = _gameState.currentSkin;
+            
             var playerTransform = transform;
 
             playerTransform.position = new Vector3(0, 1.5f, 0);

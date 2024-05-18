@@ -12,6 +12,7 @@ public class GameState : MonoBehaviour
     public int currentScore;
     public bool isOriginal = false;
 
+    public Material currentSkin;
     
     public void Start()
     {
