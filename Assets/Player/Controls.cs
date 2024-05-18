@@ -11,7 +11,6 @@ namespace Player
         private GameState _gameState;
 
         private bool _onLog;
-        
         private int _lastLog;
         private float _logOffset;
         
@@ -41,11 +40,6 @@ namespace Player
         {
             var playerTransform = transform;
             var position = playerTransform.position;
-
-            if (transform.position.z > _gameState.currentScore)
-            {
-                _gameState.currentScore = (int) transform.position.z;
-            }
             
             Quaternion rotation;
             
@@ -146,6 +140,11 @@ namespace Player
             {
                 _onLog = true;
             }
+
+            // if (collision.gameObject.CompareTag("Coin"))
+            // {
+            //     
+            // }
         }
 
         public void OnBecameInvisible()

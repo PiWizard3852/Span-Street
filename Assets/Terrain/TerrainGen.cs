@@ -47,6 +47,8 @@ namespace Terrain
         public GameObject river;
         public GameObject railroad;
 
+        public GameObject coin;
+
         public GameObject yellowCar;
         public GameObject greenCar;
         public GameObject blueCar;
@@ -125,13 +127,21 @@ namespace Terrain
             {
                 case TerrainTypes.Grass:
                     Instantiate(grass, new Vector3(0, 0, _terrainZ), Quaternion.Euler(0, 0, 0));
+
+                    Instantiate(coin, new Vector3(_random.Next(-4, 4), .5f, _terrainZ), Quaternion.Euler(90, 0, 0));
+                    
+                    if (_random.Next(5) == 4)
+                    {
+                        InstantiateCar(2);
+                    }
                     
                     break;
                 case TerrainTypes.Road:
-                    Instantiate(road, new Vector3(0, 0, _terrainZ), Quaternion.Euler(0, 0, 0));
+                    Instantiate(road, new Vector3(0, 0, _terrainZ), Quaternion.Euler(0, 0, 90));
+                    
                     InstantiateCar(1);
                     
-                    if (_random.Next(0, 5) > 3)
+                    if (_random.Next(5) == 4)
                     {
                         InstantiateCar(2);
                     }
@@ -145,7 +155,7 @@ namespace Terrain
                     
                     break;
                 case TerrainTypes.Railroad:
-                    Instantiate(railroad, new Vector3(0, 0, _terrainZ), Quaternion.Euler(0, 0, 0));
+                    Instantiate(railroad, new Vector3(0, 0, _terrainZ), Quaternion.Euler(0, 0, 90));
                     
                     InstantiateTrain();
                     
