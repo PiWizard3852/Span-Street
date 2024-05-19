@@ -27,7 +27,6 @@ namespace Shop
             _gameState = GameObject.FindGameObjectWithTag("GameState").gameObject.GetComponent<GameState>();
 
             _coins = 100;
-            //_coins = _gameState.totalScore;
             _coinsText.text = "Coins: $" + _coins;
 
             _buttons = GameObject.FindGameObjectsWithTag("ItemButton");
@@ -44,9 +43,9 @@ namespace Shop
             _skins[0, 3] = _skin4;
             _skins[0, 4] = _skin5;
 
-            foreach (var _buttonObject in _buttons)
+            foreach (var _button in _buttons)
             {
-                _buttonObject.GetComponent<Button>().onClick.AddListener(() => Buy(_buttonObject));
+                _button.GetComponent<Button>().onClick.AddListener(() => Buy(_button));
             }
 
             LoadItems();
@@ -80,9 +79,9 @@ namespace Shop
             _gameState.currentSkin = _skins[0, itemID];
             PlayerPrefs.SetInt("CurrentSkin", itemID);
 
-            foreach (var _buttonObject in _buttons)
+            foreach (var _button in _buttons)
             {
-                var _buttonInfo = _buttonObject.GetComponent<ItemInfo>();
+                var _buttonInfo = _button.GetComponent<ItemInfo>();
                 _buttonInfo.isEquipped = (_buttonInfo.ItemID == itemID);
             }
 
@@ -91,16 +90,15 @@ namespace Shop
 
         public void UpdateEachButton()
         {
-            foreach (var _buttonObject in _buttons)
+            foreach (var _button in _buttons)
             {  
-                UpdateButtonView(_buttonObject);
+                UpdateButtonView(_button);
             }
         }
 
         public void UpdateButtonView(GameObject buttonObject)
         {
             var _buttonInfo = buttonObject.GetComponent<ItemInfo>();
-            var _button = buttonObject.GetComponent<Button>();
             var _buttonText = buttonObject.GetComponentInChildren<TextMeshProUGUI>();
             var _price = _shopItems[0, _buttonInfo.ItemID];
 
@@ -124,15 +122,15 @@ namespace Shop
 
         public void LoadItems()
         {
-            foreach (var _buttonObject in _buttons)
+            foreach (var _button in _buttons)
             {
-                var _buttonInfo = _buttonObject.GetComponent<ItemInfo>();
+                var _buttonInfo = _button.GetComponent<ItemInfo>();
                 _buttonInfo.isBought = (PlayerPrefs.GetInt("Bought" + _buttonInfo.ItemID, -1) == 1);
 
                 if (_buttonInfo.isBought)
                 {
-                    _buttonObject.GetComponent<Button>().onClick.RemoveAllListeners();
-                    _buttonObject.GetComponent<Button>().onClick.AddListener(() => ChangeSkin(_buttonInfo.ItemID));
+                    _button.GetComponent<Button>().onClick.RemoveAllListeners();
+                    _button.GetComponent<Button>().onClick.AddListener(() => ChangeSkin(_buttonInfo.ItemID));
                 }
             }
         }
@@ -145,15 +143,15 @@ namespace Shop
             {
                 _gameState.currentSkin = _skins[0, currentSkinID];
                 
-                foreach (var _buttonObject in _buttons)
+                foreach (var _button in _buttons)
                 {
-                    var _buttonInfo = _buttonObject.GetComponent<ItemInfo>();
+                    var _buttonInfo = _button.GetComponent<ItemInfo>();
                     _buttonInfo.isEquipped = (_buttonInfo.ItemID == currentSkinID);
                 }
             }
         }
 
-        public void ReturnHome()
+        public void Home()
         {
             SceneManager.LoadScene(0);
         }
