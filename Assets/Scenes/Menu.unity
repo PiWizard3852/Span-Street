@@ -266,6 +266,11 @@ MonoBehaviour:
   totalScore: 0
   currentScore: 0
   isOriginal: 0
+  skin1: {fileID: 2100000, guid: 2d0d88fa0917443c5832a9f377385fed, type: 2}
+  skin2: {fileID: 2100000, guid: d7888996e3bcc45beaa3f232656d9b7b, type: 2}
+  skin3: {fileID: 2100000, guid: 2d9beefd8b5b54d5c8c7d89316ced145, type: 2}
+  skin4: {fileID: 2100000, guid: 60b772db252ee4eaba0f42915cbdf097, type: 2}
+  skin5: {fileID: 2100000, guid: 413e9deebcbe14f4cab97a84d1383583, type: 2}
   currentSkin: {fileID: 0}
 --- !u!1 &234842184
 GameObject:

@@ -7,20 +7,12 @@ namespace Shop
 {
     public class ShopManager : MonoBehaviour
     {
-        public readonly int[,] _shopItems = new int[1, 5];
-        private readonly Material[,] _skins = new Material[1, 5];
+        public GameState _gameState;
+        
         public GameObject[] _buttons;
         
         public int _coins;
         public TextMeshProUGUI _coinsText;
-        
-        public GameState _gameState;
-    
-        public Material _skin1;
-        public Material _skin2;
-        public Material _skin3;
-        public Material _skin4;
-        public Material _skin5;
 
         public void Start()
         {
@@ -30,18 +22,6 @@ namespace Shop
             _coinsText.text = "Coins: $" + _coins;
 
             _buttons = GameObject.FindGameObjectsWithTag("ItemButton");
-
-            _shopItems[0, 0] = 10;
-            _shopItems[0, 1] = 20;
-            _shopItems[0, 2] = 30;
-            _shopItems[0, 3] = 40;
-            _shopItems[0, 4] = 50;
-
-            _skins[0, 0] = _skin1;
-            _skins[0, 1] = _skin2;
-            _skins[0, 2] = _skin3;
-            _skins[0, 3] = _skin4;
-            _skins[0, 4] = _skin5;
 
             foreach (var _button in _buttons)
             {
@@ -56,7 +36,7 @@ namespace Shop
         public void Buy(GameObject clickedButton)
         {
             var _buttonInfo = clickedButton.GetComponent<ItemInfo>();
-            var _price = _shopItems[0, _buttonInfo.ItemID];
+            var _price = _gameState.SkinPrices[_buttonInfo.ItemID];
 
             if (_coins >= _price && !_buttonInfo.isBought)
             {
@@ -76,7 +56,7 @@ namespace Shop
 
         public void ChangeSkin(int itemID)
         {
-            _gameState.currentSkin = _skins[0, itemID];
+            _gameState.currentSkin = _gameState.Skins[itemID];
             PlayerPrefs.SetInt("CurrentSkin", itemID);
 
             foreach (var _button in _buttons)
@@ -100,7 +80,7 @@ namespace Shop
         {
             var _buttonInfo = buttonObject.GetComponent<ItemInfo>();
             var _buttonText = buttonObject.GetComponentInChildren<TextMeshProUGUI>();
-            var _price = _shopItems[0, _buttonInfo.ItemID];
+            var _price = _gameState.SkinPrices[_buttonInfo.ItemID];
 
             if (_buttonInfo.isEquipped)
             {
@@ -141,7 +121,7 @@ namespace Shop
             
             if (currentSkinID != -1)
             {
-                _gameState.currentSkin = _skins[0, currentSkinID];
+                _gameState.currentSkin = _gameState.Skins[currentSkinID];
                 
                 foreach (var _button in _buttons)
                 {
