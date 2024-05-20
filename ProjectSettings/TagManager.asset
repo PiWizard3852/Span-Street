@@ -15,6 +15,7 @@ TagManager:
   - Event
   - ItemButton
   - EnableButton
+  - Coin
   layers:
   - Default
   - TransparentFX

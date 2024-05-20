@@ -127,12 +127,10 @@ namespace Terrain
             {
                 case TerrainTypes.Grass:
                     Instantiate(grass, new Vector3(0, 0, _terrainZ), Quaternion.Euler(0, 0, 0));
-
-                    Instantiate(coin, new Vector3(_random.Next(-4, 4), .5f, _terrainZ), Quaternion.Euler(90, 0, 0));
                     
-                    if (_random.Next(5) == 4)
+                    if (_random.Next(5) > 1)
                     {
-                        InstantiateCar(2);
+                        InstantiateCoin(_terrainZ);
                     }
                     
                     break;
@@ -161,6 +159,12 @@ namespace Terrain
                     
                     break;
             }
+        }
+
+        private void InstantiateCoin(int coinZ)
+        {
+            Instantiate(coin, new Vector3(_random.Next(-12, 12), 1, coinZ),
+                Quaternion.Euler(90, 0, 0));
         }
 
         private void InstantiateCar(int cardinal)

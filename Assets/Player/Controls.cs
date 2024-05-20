@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,6 +10,8 @@ namespace Player
         public TextMeshProUGUI currentScoreText;
         
         private GameState _gameState;
+
+        private int _maxZ;
 
         private bool _onLog;
         private int _lastLog;
@@ -40,6 +43,8 @@ namespace Player
         {
             var playerTransform = transform;
             var position = playerTransform.position;
+
+            _maxZ = Math.Max((int) position.z, _maxZ);
             
             Quaternion rotation;
             
@@ -97,7 +102,7 @@ namespace Player
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.DownArrow) && _gameState.currentScore - transform.position.z < 3)
+            if (Input.GetKeyDown(KeyCode.DownArrow) && _maxZ - transform.position.z < 3)
             {
                 rotation = Quaternion.Euler(0, 0, 0);
                 playerTransform.rotation = rotation;
@@ -139,6 +144,13 @@ namespace Player
             if (collision.gameObject.CompareTag("Log"))
             {
                 _onLog = true;
+            }
+
+            if (collision.gameObject.CompareTag("Coin"))
+            {
+                _gameState.currentScore++;
+                
+                Destroy(collision.gameObject);
             }
         }
 

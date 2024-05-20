@@ -557,6 +557,7 @@ MonoBehaviour:
   road: {fileID: 7580373127110623174, guid: fcfb91c8e591c4db19df611d3de425c0, type: 3}
   river: {fileID: 7580373127110623174, guid: 7601b44129976403b9ccc4479768c4a3, type: 3}
   railroad: {fileID: 7580373127110623174, guid: 2635d1e6589f94bb890e02ca48e38f37, type: 3}
+  coin: {fileID: 7057607733954585980, guid: 8036ab03a6580429590b5a745e56ac77, type: 3}
   yellowCar: {fileID: 7061063271619880530, guid: b559a4b02dcb24e5cad955975924c49f, type: 3}
   greenCar: {fileID: 7061063271619880530, guid: 754dec1790c424123a0abbaaca68e7b4, type: 3}
   blueCar: {fileID: 7061063271619880530, guid: 74bade217d8db4bb1b1c9c44faf16a65, type: 3}
