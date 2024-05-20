@@ -271,6 +271,7 @@ MonoBehaviour:
   skin3: {fileID: 2100000, guid: 2d9beefd8b5b54d5c8c7d89316ced145, type: 2}
   skin4: {fileID: 2100000, guid: 60b772db252ee4eaba0f42915cbdf097, type: 2}
   skin5: {fileID: 2100000, guid: 413e9deebcbe14f4cab97a84d1383583, type: 2}
+  skin6: {fileID: 2100000, guid: 6a7f986c7811b443d96f83bad37d734e, type: 2}
   currentSkin: {fileID: 0}
 --- !u!1 &234842184
 GameObject:

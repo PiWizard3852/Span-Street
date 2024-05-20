@@ -11,15 +11,13 @@ namespace Shop
         
         public GameObject[] _buttons;
         
-        public int _coins;
         public TextMeshProUGUI _coinsText;
 
         public void Start()
         {
             _gameState = GameObject.FindGameObjectWithTag("GameState").gameObject.GetComponent<GameState>();
 
-            _coins = 100;
-            _coinsText.text = "Coins: $" + _coins;
+            _coinsText.text = "Coins: $" + _gameState.totalScore;
 
             _buttons = GameObject.FindGameObjectsWithTag("ItemButton");
 
@@ -38,10 +36,10 @@ namespace Shop
             var _buttonInfo = clickedButton.GetComponent<ItemInfo>();
             var _price = _gameState.SkinPrices[_buttonInfo.ItemID];
 
-            if (_coins >= _price && !_buttonInfo.isBought)
+            if (_gameState.totalScore >= _price && !_buttonInfo.isBought)
             {
-                _coins -= _price;
-                _coinsText.text = "Coins: $" + _coins.ToString();
+                _gameState.totalScore -= _price;
+                _coinsText.text = "Coins: $" + _gameState.totalScore.ToString();
                 _buttonInfo.isBought = true;
 
                 PlayerPrefs.SetInt("Bought" + _buttonInfo.ItemID, 1);
@@ -90,7 +88,7 @@ namespace Shop
             {
                 _buttonText.text = "Equip";
             }
-            else if (_coins >= _price)
+            else if (_gameState.totalScore >= _price)
             {
                 _buttonText.text = "Buy for $" + _price;
             }

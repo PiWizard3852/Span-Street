@@ -17,13 +17,14 @@ public class GameState : MonoBehaviour
     public bool isOriginal = false;
     
     public readonly Material[] Skins = new Material[5];
-    public readonly int[] SkinPrices = new int[5];
+    public readonly int[] SkinPrices = new int[6];
     
     public Material skin1;
     public Material skin2;
     public Material skin3;
     public Material skin4;
     public Material skin5;
+    public Material skin6;
     
     public Material currentSkin;
     
@@ -39,12 +40,14 @@ public class GameState : MonoBehaviour
         SkinPrices[2] = 30;
         SkinPrices[3] = 40;
         SkinPrices[4] = 50;
+        SkinPrices[5] = 1920;
 
         Skins[0] = skin1;
         Skins[1] = skin2;
         Skins[2] = skin3;
         Skins[3] = skin4;
         Skins[4] = skin5;
+        Skins[5] = skin6;
 
         currentSkin = Skins[PlayerPrefs.GetInt("CurrentSkin")] ?? skin1;
     }
