@@ -16,7 +16,7 @@ public class GameState : MonoBehaviour
     
     public bool isOriginal = false;
     
-    public readonly Material[] Skins = new Material[5];
+    public readonly Material[] Skins = new Material[6];
     public readonly int[] SkinPrices = new int[6];
     
     public Material skin1;
@@ -40,7 +40,7 @@ public class GameState : MonoBehaviour
         SkinPrices[2] = 30;
         SkinPrices[3] = 40;
         SkinPrices[4] = 50;
-        SkinPrices[5] = 1920;
+        SkinPrices[5] = 2000;
 
         Skins[0] = skin1;
         Skins[1] = skin2;
