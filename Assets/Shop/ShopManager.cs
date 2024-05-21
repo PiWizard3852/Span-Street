@@ -90,7 +90,7 @@ namespace Shop
             }
             else
             {
-                _buttonText.text = "Buy for $" + _price;
+                _buttonText.text = "$" + _price;
             }
         }
 
