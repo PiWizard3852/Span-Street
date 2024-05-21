@@ -66,10 +66,10 @@ public class GameState : MonoBehaviour
         switch (SceneManager.GetActiveScene().name)
         {
             case "Menu":
-                totalScoreText.text = "" + totalScore;
+                totalScoreText.text = "$" + totalScore;
                 break;
             case "Game":
-                currentScoreText.text = "" + currentScore;
+                currentScoreText.text = "$" + currentScore;
                 break;
         }
     }
