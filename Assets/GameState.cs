@@ -27,9 +27,16 @@ public class GameState : MonoBehaviour
     public Material skin6;
     
     public Material currentSkin;
+
+    public bool DeleteAll;
     
     public void Start()
     {
+        if(DeleteAll)
+        {
+            PlayerPrefs.DeleteAll();
+        }
+
         totalScore = PlayerPrefs.GetInt("totalScore", 0);
         currentScore = 0;
         
@@ -48,6 +55,8 @@ public class GameState : MonoBehaviour
         Skins[3] = skin4;
         Skins[4] = skin5;
         Skins[5] = skin6;
+
+        currentSkin = skin1;
 
         currentSkin = Skins[PlayerPrefs.GetInt("CurrentSkin")] ?? skin1;
     }

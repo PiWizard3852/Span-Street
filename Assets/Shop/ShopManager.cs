@@ -88,13 +88,9 @@ namespace Shop
             {
                 _buttonText.text = "Equip";
             }
-            else if (_gameState.totalScore >= _price)
-            {
-                _buttonText.text = "Buy for $" + _price;
-            }
             else
             {
-                _buttonText.text = "Cannot Buy\n$" + _price + " needed to buy";
+                _buttonText.text = "Buy for $" + _price;
             }
         }
 
