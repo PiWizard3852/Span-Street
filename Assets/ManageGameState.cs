@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 public class ManageGameState : MonoBehaviour
 {
     public TextMeshProUGUI totalScoreText;
+    
+    public bool firstRun = true;
 
     public void Start()
     {

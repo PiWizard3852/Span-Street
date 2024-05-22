@@ -88,7 +88,7 @@ namespace Shop
             {
                 _buttonText.text = "Equip";
             }
-            else
+            else if (_buttonInfo.ItemID != 0)
             {
                 _buttonText.text = "$" + _price;
             }

@@ -64,7 +64,7 @@ namespace Terrain
             _terrainStreak = 1;
             _lastTerrainType = TerrainTypes.Grass;
             
-            for (_terrainZ = -10; _terrainZ < 70; _terrainZ++) InstantiateLand();
+            for (_terrainZ = -10; _terrainZ < 100; _terrainZ++) InstantiateLand();
         }
 
         public void Update()

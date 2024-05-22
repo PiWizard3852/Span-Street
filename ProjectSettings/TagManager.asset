@@ -16,6 +16,7 @@ TagManager:
   - ItemButton
   - EnableButton
   - Coin
+  - GameStateManager
   layers:
   - Default
   - TransparentFX

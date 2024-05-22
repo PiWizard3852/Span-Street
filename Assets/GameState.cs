@@ -42,7 +42,7 @@ public class GameState : MonoBehaviour
         
         totalScoreText.text = "" + totalScore;
         
-        SkinPrices[0] = 10;
+        SkinPrices[0] = 0;
         SkinPrices[1] = 20;
         SkinPrices[2] = 30;
         SkinPrices[3] = 40;
@@ -59,6 +59,12 @@ public class GameState : MonoBehaviour
         currentSkin = skin1;
 
         currentSkin = Skins[PlayerPrefs.GetInt("CurrentSkin")] ?? skin1;
+
+        if (PlayerPrefs.GetInt("FirstRun", 0) == 0)
+        {
+            SceneManager.LoadScene(1);
+            PlayerPrefs.SetInt("FirstRun", 1);
+        }
     }
 
     public void Update()

@@ -553,7 +553,7 @@ GameObject:
   - component: {fileID: 427554358}
   - component: {fileID: 427554357}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: PlayText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -954,7 +954,7 @@ GameObject:
   - component: {fileID: 892717480}
   m_Layer: 0
   m_Name: GameStateManager
-  m_TagString: Untagged
+  m_TagString: GameStateManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -972,6 +972,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalScoreText: {fileID: 827198934}
+  firstRun: 1
 --- !u!4 &892717481
 Transform:
   m_ObjectHideFlags: 0
@@ -999,7 +1000,7 @@ GameObject:
   - component: {fileID: 1236113787}
   - component: {fileID: 1236113786}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: ShopText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
