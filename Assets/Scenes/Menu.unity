@@ -464,7 +464,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: GAME TITLE HERE
+  m_text: SPAN STREET
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ff6a5c22999144564ada6ddd5080552c, type: 2}
   m_sharedMaterial: {fileID: -8515404958995294282, guid: ff6a5c22999144564ada6ddd5080552c, type: 2}
@@ -491,8 +491,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 200
-  m_fontSizeBase: 200
+  m_fontSize: 170
+  m_fontSizeBase: 170
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
