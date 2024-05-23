@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics;
 using UnityEngine;
 
 namespace Player
@@ -7,15 +6,14 @@ namespace Player
     public class CameraMovement : MonoBehaviour
     {
         public GameObject player;
-        
+
         private float _targetZ;
-        private float _error;
         private float _targetPower;
-        
+
         public void Start()
         {
             var playerPosition = player.transform.position;
-            
+
             transform.position = new Vector3(playerPosition.x, playerPosition.y + 10,
                 playerPosition.z - 13);
             transform.rotation = Quaternion.Euler(30, 0, 0);
@@ -29,15 +27,15 @@ namespace Player
             var playerPosition = player.transform.position;
 
             _targetZ = -Math.Max(playerPosition.z - 13, cameraPosition.z + .005f);
-            _error = Math.Abs(_targetZ - cameraPosition.z);
+            Math.Abs(_targetZ - cameraPosition.z);
 
             _targetPower = playerPosition.z - 13 > cameraPosition.z + .005f ? -Math.Min(_targetZ / 50, -.01f) : .005f;
 
             transform.rotation = Quaternion.Euler(0, 0, 0);
-            
+
             cameraPosition += cameraTransform.forward * _targetPower;
             cameraTransform.position = cameraPosition;
-            
+
             transform.rotation = Quaternion.Euler(30, 0, 0);
         }
     }

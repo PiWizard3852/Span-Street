@@ -7,20 +7,20 @@ namespace Vehicles
     {
         protected readonly Random Random = new();
         protected GameState GameState;
-        
+
         protected float Speed;
-        
+
         public bool invisible;
         public bool passed;
 
         protected void Init()
         {
             GameState = GameObject.FindGameObjectWithTag("GameState").gameObject.GetComponent<GameState>();
-            
+
             invisible = false;
             passed = false;
         }
-        
+
         public void Update()
         {
             var vehicleTransform = transform;
@@ -28,18 +28,15 @@ namespace Vehicles
             vehiclePosition += vehicleTransform.right * Speed;
             vehicleTransform.position = vehiclePosition;
         }
-        
+
         public void OnBecameVisible()
         {
             passed = true;
         }
-        
+
         public void OnBecameInvisible()
         {
-            if (passed)
-            {
-                invisible = true;
-            }
+            if (passed) invisible = true;
         }
     }
 }

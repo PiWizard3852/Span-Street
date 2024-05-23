@@ -1,15 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
-using Shop;
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine;
 
-public class ItemInfo : MonoBehaviour
+namespace Shop
 {
-    public int ItemID;
-    public TextMeshProUGUI PriceText;
-    public GameObject ShopManager;
-    public bool isBought = false;
-    public bool isEquipped = false;
+    public class ItemInfo : MonoBehaviour
+    {
+        public int itemID;
+    
+        public TextMeshProUGUI priceText;
+        public GameObject shopManager;
+    
+        public bool isBought = false;
+        public bool isEquipped = false;
+    }
 }

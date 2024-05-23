@@ -8,7 +8,7 @@ namespace Player
     public class Controls : MonoBehaviour
     {
         public TextMeshProUGUI currentScoreText;
-        
+
         private GameState _gameState;
 
         private int _maxZ;
@@ -16,20 +16,20 @@ namespace Player
         private bool _onLog;
         private int _lastLog;
         private float _logOffset;
-        
+
         private bool _lost;
-        
+
         public void Start()
         {
             _gameState = GameObject.FindGameObjectWithTag("GameState").gameObject.GetComponent<GameState>();
-            
+
             _gameState.currentScoreText = currentScoreText;
             _gameState.currentScore = 0;
-            
+
             _gameState.isOriginal = true;
-            
+
             GetComponent<MeshRenderer>().material = _gameState.currentSkin;
-            
+
             var playerTransform = transform;
 
             playerTransform.position = new Vector3(0, 1.5f, 0);
@@ -44,10 +44,10 @@ namespace Player
             var playerTransform = transform;
             var position = playerTransform.position;
 
-            _maxZ = Math.Max((int) position.z, _maxZ);
-            
+            _maxZ = Math.Max((int)position.z, _maxZ);
+
             Quaternion rotation;
-            
+
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 rotation = Quaternion.Euler(0, 180, 0);
@@ -56,50 +56,32 @@ namespace Player
                 position = new Vector3(position.x, position.y, position.z + 1);
                 playerTransform.position = position;
 
-                if (Physics.Raycast(transform.position, -Vector3.up, out var hit, 100.0f) && hit.transform.CompareTag("River") && !_onLog)
-                {
-                    Lose();
-                }
+                if (Physics.Raycast(transform.position, -Vector3.up, out var hit, 100.0f) &&
+                    hit.transform.CompareTag("River") && !_onLog) Lose();
 
                 var grasses = GameObject.FindGameObjectsWithTag("Grass");
 
                 foreach (var grass in grasses)
-                {
                     if (transform.position.z - grass.transform.position.z > 30)
-                    {
                         Destroy(grass);
-                    }
-                }
-            
+
                 var roads = GameObject.FindGameObjectsWithTag("Road");
 
                 foreach (var road in roads)
-                {
                     if (transform.position.z - road.transform.position.z > 30)
-                    {
                         Destroy(road);
-                    }
-                }
-            
+
                 var rivers = GameObject.FindGameObjectsWithTag("River");
 
                 foreach (var river in rivers)
-                {
                     if (transform.position.z - river.transform.position.z > 30)
-                    {
                         Destroy(river);
-                    }
-                }
-            
+
                 var railroads = GameObject.FindGameObjectsWithTag("Railroad");
 
                 foreach (var railroad in railroads)
-                {
                     if (transform.position.z - railroad.transform.position.z > 30)
-                    {
                         Destroy(railroad);
-                    }
-                }
             }
 
             if (Input.GetKeyDown(KeyCode.DownArrow) && _maxZ - transform.position.z < 3)
@@ -128,7 +110,7 @@ namespace Player
                 playerTransform.rotation = rotation;
 
                 _logOffset++;
-                
+
                 position = new Vector3(position.x + 1, position.y, position.z);
                 playerTransform.position = position;
             }
@@ -136,20 +118,15 @@ namespace Player
 
         public void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.CompareTag("Car") || collision.gameObject.CompareTag("River") || collision.gameObject.CompareTag("Train"))
-            {
-                Lose();
-            }
+            if (collision.gameObject.CompareTag("Car") || collision.gameObject.CompareTag("River") ||
+                collision.gameObject.CompareTag("Train")) Lose();
 
-            if (collision.gameObject.CompareTag("Log"))
-            {
-                _onLog = true;
-            }
+            if (collision.gameObject.CompareTag("Log")) _onLog = true;
 
             if (collision.gameObject.CompareTag("Coin"))
             {
                 _gameState.currentScore++;
-                
+
                 Destroy(collision.gameObject);
             }
         }
@@ -188,7 +165,7 @@ namespace Player
             if (!_lost)
             {
                 _gameState.totalScore += _gameState.currentScore;
-                
+
                 SceneManager.LoadScene(0);
             }
 

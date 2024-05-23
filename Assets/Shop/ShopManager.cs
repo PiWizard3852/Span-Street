@@ -7,120 +7,107 @@ namespace Shop
 {
     public class ShopManager : MonoBehaviour
     {
-        public GameState _gameState;
+        public GameState gameState;
+
+        public GameObject[] buttons;
         
-        public GameObject[] _buttons;
-        
-        public TextMeshProUGUI _coinsText;
+        public TextMeshProUGUI coinsText;
 
         public void Start()
         {
-            _gameState = GameObject.FindGameObjectWithTag("GameState").gameObject.GetComponent<GameState>();
+            gameState = GameObject.FindGameObjectWithTag("GameState").gameObject.GetComponent<GameState>();
 
-            _coinsText.text = "Coins: $" + _gameState.totalScore;
+            coinsText.text = "Coins: $" + gameState.totalScore;
 
-            _buttons = GameObject.FindGameObjectsWithTag("ItemButton");
+            buttons = GameObject.FindGameObjectsWithTag("ItemButton");
 
-            foreach (var _button in _buttons)
-            {
-                _button.GetComponent<Button>().onClick.AddListener(() => Buy(_button));
-            }
+            foreach (var button in buttons) button.GetComponent<Button>().onClick.AddListener(() => Buy(button));
 
             LoadItems();
             LoadSkin();
             UpdateEachButton();
         }
 
-        public void Buy(GameObject clickedButton)
+        private void Buy(GameObject clickedButton)
         {
-            var _buttonInfo = clickedButton.GetComponent<ItemInfo>();
-            var _price = _gameState.SkinPrices[_buttonInfo.ItemID];
+            var buttonInfo = clickedButton.GetComponent<ItemInfo>();
+            var price = gameState.SkinPrices[buttonInfo.itemID];
 
-            if (_gameState.totalScore >= _price && !_buttonInfo.isBought)
+            if (gameState.totalScore >= price && !buttonInfo.isBought)
             {
-                _gameState.totalScore -= _price;
-                _coinsText.text = "Coins: $" + _gameState.totalScore.ToString();
-                _buttonInfo.isBought = true;
+                gameState.totalScore -= price;
+                coinsText.text = "Coins: $" + gameState.totalScore.ToString();
+                buttonInfo.isBought = true;
 
-                PlayerPrefs.SetInt("Bought" + _buttonInfo.ItemID, 1);
+                PlayerPrefs.SetInt("Bought" + buttonInfo.itemID, 1);
 
-                var _button = clickedButton.GetComponent<Button>();
-                _button.onClick.RemoveAllListeners();
-                _button.onClick.AddListener(() => ChangeSkin(_buttonInfo.ItemID));
+                var button = clickedButton.GetComponent<Button>();
+                button.onClick.RemoveAllListeners();
+                button.onClick.AddListener(() => ChangeSkin(buttonInfo.itemID));
             }
 
             UpdateEachButton();
         }
 
-        public void ChangeSkin(int itemID)
+        private void ChangeSkin(int itemID)
         {
-            _gameState.currentSkin = _gameState.Skins[itemID];
+            gameState.currentSkin = gameState.Skins[itemID];
             PlayerPrefs.SetInt("CurrentSkin", itemID);
 
-            foreach (var _button in _buttons)
+            foreach (var button in buttons)
             {
-                var _buttonInfo = _button.GetComponent<ItemInfo>();
-                _buttonInfo.isEquipped = (_buttonInfo.ItemID == itemID);
+                var buttonInfo = button.GetComponent<ItemInfo>();
+                buttonInfo.isEquipped = buttonInfo.itemID == itemID;
             }
 
             UpdateEachButton();
         }
 
-        public void UpdateEachButton()
+        private void UpdateEachButton()
         {
-            foreach (var _button in _buttons)
-            {  
-                UpdateButtonView(_button);
-            }
+            foreach (var button in buttons) UpdateButtonView(button);
         }
 
-        public void UpdateButtonView(GameObject buttonObject)
+        private void UpdateButtonView(GameObject buttonObject)
         {
-            var _buttonInfo = buttonObject.GetComponent<ItemInfo>();
-            var _buttonText = buttonObject.GetComponentInChildren<TextMeshProUGUI>();
-            var _price = _gameState.SkinPrices[_buttonInfo.ItemID];
+            var buttonInfo = buttonObject.GetComponent<ItemInfo>();
+            var buttonText = buttonObject.GetComponentInChildren<TextMeshProUGUI>();
+            var price = gameState.SkinPrices[buttonInfo.itemID];
 
-            if (_buttonInfo.isEquipped)
-            {
-                _buttonText.text = "Equipped";
-            }
-            else if (_buttonInfo.isBought)
-            {
-                _buttonText.text = "Equip";
-            }
-            else if (_buttonInfo.ItemID != 0)
-            {
-                _buttonText.text = "$" + _price;
-            }
+            if (buttonInfo.isEquipped)
+                buttonText.text = "Equipped";
+            else if (buttonInfo.isBought)
+                buttonText.text = "Equip";
+            else if (buttonInfo.itemID != 0) buttonText.text = "$" + price;
         }
 
-        public void LoadItems()
+        private void LoadItems()
         {
-            foreach (var _button in _buttons)
+            foreach (var button in buttons)
             {
-                var _buttonInfo = _button.GetComponent<ItemInfo>();
-                _buttonInfo.isBought = (PlayerPrefs.GetInt("Bought" + _buttonInfo.ItemID, -1) == 1);
+                var buttonInfo = button.GetComponent<ItemInfo>();
+                buttonInfo.isBought = PlayerPrefs.GetInt("Bought" + buttonInfo.itemID, -1) == 1;
 
-                if (_buttonInfo.isBought)
+                if (buttonInfo.isBought)
                 {
-                    _button.GetComponent<Button>().onClick.RemoveAllListeners();
-                    _button.GetComponent<Button>().onClick.AddListener(() => ChangeSkin(_buttonInfo.ItemID));
+                    button.GetComponent<Button>().onClick.RemoveAllListeners();
+                    button.GetComponent<Button>().onClick.AddListener(() => ChangeSkin(buttonInfo.itemID));
                 }
             }
         }
 
-        public void LoadSkin()
+        private void LoadSkin()
         {
-            int currentSkinID = PlayerPrefs.GetInt("CurrentSkin", -1);
-            
+            var currentSkinID = PlayerPrefs.GetInt("CurrentSkin", -1);
+
             if (currentSkinID != -1)
             {
-                _gameState.currentSkin = _gameState.Skins[currentSkinID];
-                
-                foreach (var _button in _buttons)
+                gameState.currentSkin = gameState.Skins[currentSkinID];
+
+                foreach (var button in buttons)
                 {
-                    var _buttonInfo = _button.GetComponent<ItemInfo>();
-                    _buttonInfo.isEquipped = (_buttonInfo.ItemID == currentSkinID);
+                    var buttonInfo = button.GetComponent<ItemInfo>();
+                    buttonInfo.isEquipped = buttonInfo.itemID == currentSkinID;
                 }
             }
         }

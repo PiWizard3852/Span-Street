@@ -5,43 +5,36 @@ using UnityEngine.SceneManagement;
 public class GameState : MonoBehaviour
 {
     public static GameState Instance;
-    
+
     public TextMeshProUGUI totalScoreText;
     public TextMeshProUGUI currentScoreText;
-    
+
     public int totalScore;
     public int currentScore;
-    
+
     public bool isOriginal = false;
-    
+
     public readonly Material[] Skins = new Material[6];
     public readonly int[] SkinPrices = new int[6];
-    
+
     public Material skin1;
     public Material skin2;
     public Material skin3;
     public Material skin4;
     public Material skin5;
     public Material skin6;
-    
-    public Material currentSkin;
 
-    public bool DeleteAll;
+    public Material currentSkin;
     
     public void Start()
     {
         Screen.SetResolution(1920, 1080, true);
         
-        if(DeleteAll)
-        {
-            PlayerPrefs.DeleteAll();
-        }
-
         totalScore = PlayerPrefs.GetInt("totalScore", 0);
         currentScore = 0;
-        
+
         totalScoreText.text = "" + totalScore;
-        
+
         SkinPrices[0] = 0;
         SkinPrices[1] = 20;
         SkinPrices[2] = 30;
