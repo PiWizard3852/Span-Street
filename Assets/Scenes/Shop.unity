@@ -243,9 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ab8de50c6ed4e868658208f04759af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemID: 2
-  PriceText: {fileID: 0}
-  ShopManager: {fileID: 1196490778}
+  itemID: 2
   isBought: 0
   isEquipped: 0
 --- !u!114 &105301114
@@ -382,9 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ab8de50c6ed4e868658208f04759af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemID: 3
-  PriceText: {fileID: 0}
-  ShopManager: {fileID: 1196490778}
+  itemID: 3
   isBought: 0
   isEquipped: 0
 --- !u!114 &219574507
@@ -655,9 +651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ab8de50c6ed4e868658208f04759af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemID: 5
-  PriceText: {fileID: 0}
-  ShopManager: {fileID: 1196490778}
+  itemID: 5
   isBought: 0
   isEquipped: 0
 --- !u!114 &336703375
@@ -1196,9 +1190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ab8de50c6ed4e868658208f04759af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemID: 1
-  PriceText: {fileID: 0}
-  ShopManager: {fileID: 1196490778}
+  itemID: 1
   isBought: 0
   isEquipped: 0
 --- !u!114 &1160021552
@@ -1327,9 +1319,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1ac788f0ba74527a25eee6eb76387f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameState: {fileID: 0}
-  _buttons: []
-  _coinsText: {fileID: 648646497}
+  gameState: {fileID: 0}
+  buttons: []
+  coinsText: {fileID: 648646497}
 --- !u!1 &1222074538
 GameObject:
   m_ObjectHideFlags: 0
@@ -1957,9 +1949,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ab8de50c6ed4e868658208f04759af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemID: 0
-  PriceText: {fileID: 0}
-  ShopManager: {fileID: 1196490778}
+  itemID: 0
   isBought: 1
   isEquipped: 1
 --- !u!1 &1846325123
@@ -2257,9 +2247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ab8de50c6ed4e868658208f04759af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemID: 4
-  PriceText: {fileID: 0}
-  ShopManager: {fileID: 1196490778}
+  itemID: 4
   isBought: 0
   isEquipped: 0
 --- !u!114 &2055229731

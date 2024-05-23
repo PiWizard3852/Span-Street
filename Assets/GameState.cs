@@ -53,10 +53,10 @@ public class GameState : MonoBehaviour
 
         currentSkin = Skins[PlayerPrefs.GetInt("CurrentSkin")] ?? skin1;
 
-        if (PlayerPrefs.GetInt("firstRun", 0) == 0)
+        if (PlayerPrefs.GetInt("firstRun", 1) == 1)
         {
             SceneManager.LoadScene(1);
-            PlayerPrefs.SetInt("firstRun", 1);
+            PlayerPrefs.SetInt("firstRun", 0);
         }
     }
 
@@ -76,7 +76,7 @@ public class GameState : MonoBehaviour
     public void OnApplicationQuit()
     {
         PlayerPrefs.SetInt("totalScore", totalScore);
-        PlayerPrefs.SetInt("firstRun", 0);
+        PlayerPrefs.DeleteKey("firstRun");
         PlayerPrefs.Save();
     }
 

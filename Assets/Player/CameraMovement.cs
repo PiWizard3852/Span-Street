@@ -26,17 +26,20 @@ namespace Player
 
             var playerPosition = player.transform.position;
 
-            _targetZ = -Math.Max(playerPosition.z - 13, cameraPosition.z + .005f);
-            Math.Abs(_targetZ - cameraPosition.z);
+            _targetZ = -Math.Max(playerPosition.z - 13, cameraPosition.z + .01f);
+            _targetPower = playerPosition.z - 13 > cameraPosition.z + .01f ? -Math.Min(_targetZ / 50, -.01f) : .01f;
 
-            _targetPower = playerPosition.z - 13 > cameraPosition.z + .005f ? -Math.Min(_targetZ / 50, -.01f) : .005f;
-
-            transform.rotation = Quaternion.Euler(0, 0, 0);
+            SetRotation(Quaternion.Euler(0, 0, 0));
 
             cameraPosition += cameraTransform.forward * _targetPower;
             cameraTransform.position = cameraPosition;
 
-            transform.rotation = Quaternion.Euler(30, 0, 0);
+            SetRotation(Quaternion.Euler(30, 0, 0));
+        }
+
+        private void SetRotation(Quaternion rotation)
+        {
+            transform.rotation = rotation;
         }
     }
 }
