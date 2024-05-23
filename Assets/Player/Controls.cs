@@ -65,7 +65,7 @@ namespace Player
 
                 foreach (var grass in grasses)
                 {
-                    if (transform.position.z - grass.transform.position.z > 15)
+                    if (transform.position.z - grass.transform.position.z > 30)
                     {
                         Destroy(grass);
                     }
@@ -75,7 +75,7 @@ namespace Player
 
                 foreach (var road in roads)
                 {
-                    if (transform.position.z - road.transform.position.z > 15)
+                    if (transform.position.z - road.transform.position.z > 30)
                     {
                         Destroy(road);
                     }
@@ -85,7 +85,7 @@ namespace Player
 
                 foreach (var river in rivers)
                 {
-                    if (transform.position.z - river.transform.position.z > 15)
+                    if (transform.position.z - river.transform.position.z > 30)
                     {
                         Destroy(river);
                     }
@@ -95,7 +95,7 @@ namespace Player
 
                 foreach (var railroad in railroads)
                 {
-                    if (transform.position.z - railroad.transform.position.z > 15)
+                    if (transform.position.z - railroad.transform.position.z > 30)
                     {
                         Destroy(railroad);
                     }

@@ -8,7 +8,7 @@ namespace Vehicles
         {
             Init();
             
-            Speed = .02f * Random.Next(1, 2) + .02f * Math.Min(GameState.totalScore + GameState.currentScore, 300) / 300;
+            Speed = .04f * Random.Next(1, 2) + .025f * Math.Min(GameState.totalScore + GameState.currentScore, 300) / 300;
         }
     }
 }

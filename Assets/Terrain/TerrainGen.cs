@@ -69,7 +69,7 @@ namespace Terrain
 
         public void Update()
         {
-            if (_terrainZ - player.transform.position.z < 40)
+            if (_terrainZ - player.transform.position.z < 70)
             {
                 _terrainZ++;
                 InstantiateLand();

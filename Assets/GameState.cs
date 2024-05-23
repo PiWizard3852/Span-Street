@@ -1,8 +1,6 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 public class GameState : MonoBehaviour
 {
@@ -32,6 +30,8 @@ public class GameState : MonoBehaviour
     
     public void Start()
     {
+        Screen.SetResolution(1920, 1080, true);
+        
         if(DeleteAll)
         {
             PlayerPrefs.DeleteAll();
