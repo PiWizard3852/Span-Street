@@ -29,12 +29,14 @@ public class GameState : MonoBehaviour
     public void Start()
     {
         Screen.SetResolution(1920, 1080, true);
-        
+       
+        // Get current total score from player prefs (local storage)
         totalScore = PlayerPrefs.GetInt("totalScore", 0);
         currentScore = 0;
 
         totalScoreText.text = "" + totalScore;
 
+        // Initialize values for skin prices and skin materials
         SkinPrices[0] = 0;
         SkinPrices[1] = 20;
         SkinPrices[2] = 30;
@@ -53,6 +55,7 @@ public class GameState : MonoBehaviour
 
         currentSkin = Skins[PlayerPrefs.GetInt("CurrentSkin")] ?? skin1;
 
+        // Use player prefs to open play mode on the first run of the game
         if (PlayerPrefs.GetInt("firstRun", 1) == 1)
         {
             SceneManager.LoadScene(1);
@@ -62,6 +65,7 @@ public class GameState : MonoBehaviour
 
     public void Update()
     {
+        // Render the correct text according to the active scene
         switch (SceneManager.GetActiveScene().name)
         {
             case "Menu":
@@ -75,6 +79,7 @@ public class GameState : MonoBehaviour
 
     public void OnApplicationQuit()
     {
+        // Store all necesary values in player prefs when the game is quit
         PlayerPrefs.SetInt("totalScore", totalScore);
         PlayerPrefs.DeleteKey("firstRun");
         PlayerPrefs.Save();

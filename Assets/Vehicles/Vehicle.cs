@@ -23,6 +23,7 @@ namespace Vehicles
 
         public void Update()
         {
+            // Move the vehicle to the right
             var vehicleTransform = transform;
             var vehiclePosition = vehicleTransform.position;
             vehiclePosition += vehicleTransform.right * Speed;

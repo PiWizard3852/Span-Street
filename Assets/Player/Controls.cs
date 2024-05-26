@@ -21,6 +21,7 @@ namespace Player
 
         public void Start()
         {
+            // Access and set game state and local variable
             _gameState = GameObject.FindGameObjectWithTag("GameState").gameObject.GetComponent<GameState>();
 
             _gameState.currentScoreText = currentScoreText;
@@ -48,6 +49,7 @@ namespace Player
 
             Quaternion rotation;
 
+            // Handle user key input
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 rotation = Quaternion.Euler(0, 180, 0);
@@ -56,8 +58,11 @@ namespace Player
                 position = new Vector3(position.x, position.y, position.z + 1);
                 playerTransform.position = position;
 
+                // Use raycasting to detect a collision with the river
                 if (Physics.Raycast(transform.position, -Vector3.up, out var hit, 100.0f) &&
                     hit.transform.CompareTag("River") && !_onLog) Lose();
+
+                // Delete terrain far behind the player
 
                 var grasses = GameObject.FindGameObjectsWithTag("Grass");
 
@@ -118,11 +123,13 @@ namespace Player
 
         public void OnCollisionEnter(Collision collision)
         {
+            // Handle lose case collisions
             if (collision.gameObject.CompareTag("Car") || collision.gameObject.CompareTag("River") ||
                 collision.gameObject.CompareTag("Train")) Lose();
 
             if (collision.gameObject.CompareTag("Log")) _onLog = true;
 
+            // Collect coins
             if (collision.gameObject.CompareTag("Coin"))
             {
                 _gameState.currentScore++;
@@ -133,11 +140,13 @@ namespace Player
 
         public void OnBecameInvisible()
         {
+            // Lose if the player goes out of screen
             Lose();
         }
 
         public void OnCollisionStay(Collision collision)
         {
+            // Handle continous collisions while on logs
             if (collision.gameObject.CompareTag("Log"))
             {
                 if (!_lastLog.Equals(collision.gameObject.GetHashCode()))
@@ -162,6 +171,7 @@ namespace Player
 
         private void Lose()
         {
+            // Render correct scene after losing
             if (!_lost)
             {
                 _gameState.totalScore += _gameState.currentScore;

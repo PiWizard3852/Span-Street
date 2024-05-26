@@ -21,11 +21,13 @@ namespace Shop
 
             buttons = GameObject.FindGameObjectsWithTag("ItemButton");
 
+            // Add event listeners to each button in the shop
             foreach (var button in buttons) button.GetComponent<Button>().onClick.AddListener(() => Buy(button));
 
+            // Load previous shop data from player prefs
             LoadItems();
             LoadSkin();
-            UpdateEachButton();
+            UpdateButtons();
         }
 
         private void Buy(GameObject clickedButton)
@@ -35,22 +37,27 @@ namespace Shop
 
             if (gameState.totalScore >= price && !buttonInfo.isBought)
             {
+                // Update coins
                 gameState.totalScore -= price;
                 coinsText.text = "Coins: $" + gameState.totalScore.ToString();
                 buttonInfo.isBought = true;
 
+                // Save bought skin in player prefs
                 PlayerPrefs.SetInt("Bought" + buttonInfo.itemID, 1);
 
+                // Update the button's event listener to call the ChangeSkin method
                 var button = clickedButton.GetComponent<Button>();
                 button.onClick.RemoveAllListeners();
                 button.onClick.AddListener(() => ChangeSkin(buttonInfo.itemID));
             }
 
-            UpdateEachButton();
+            //Update UI
+            UpdateButtons();
         }
 
         private void ChangeSkin(int itemID)
         {
+            // Update the player's skin and save it in player prefs
             gameState.currentSkin = gameState.Skins[itemID];
             PlayerPrefs.SetInt("CurrentSkin", itemID);
 
@@ -60,20 +67,22 @@ namespace Shop
                 buttonInfo.isEquipped = buttonInfo.itemID == itemID;
             }
 
-            UpdateEachButton();
+            // Update UI
+            UpdateButtons();
         }
 
-        private void UpdateEachButton()
+        private void UpdateButtons()
         {
-            foreach (var button in buttons) UpdateButtonView(button);
+            foreach (var button in buttons) UpdateButton(button);
         }
 
-        private void UpdateButtonView(GameObject buttonObject)
+        private void UpdateButton(GameObject buttonObject)
         {
             var buttonInfo = buttonObject.GetComponent<ItemInfo>();
             var buttonText = buttonObject.GetComponentInChildren<TextMeshProUGUI>();
             var price = gameState.SkinPrices[buttonInfo.itemID];
 
+            // Update the text on the button according to its current state
             if (buttonInfo.isEquipped)
                 buttonText.text = "Equipped";
             else if (buttonInfo.isBought)
@@ -85,9 +94,11 @@ namespace Shop
         {
             foreach (var button in buttons)
             {
+                // Check if the skin was previously purchased
                 var buttonInfo = button.GetComponent<ItemInfo>();
                 buttonInfo.isBought = PlayerPrefs.GetInt("Bought" + buttonInfo.itemID, -1) == 1;
 
+                // Update event listeners
                 if (buttonInfo.isBought)
                 {
                     button.GetComponent<Button>().onClick.RemoveAllListeners();
@@ -98,6 +109,7 @@ namespace Shop
 
         private void LoadSkin()
         {
+            // Find the last skin equipped in previous runs of the game using player prefs
             var currentSkinID = PlayerPrefs.GetInt("CurrentSkin", -1);
 
             if (currentSkinID != -1)
@@ -114,6 +126,7 @@ namespace Shop
 
         public void Home()
         {
+            // Render the menu scene
             SceneManager.LoadScene(0);
         }
     }

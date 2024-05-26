@@ -12,6 +12,7 @@ namespace Player
 
         public void Start()
         {
+            // Set initial camera position behind the player
             var playerPosition = player.transform.position;
 
             transform.position = new Vector3(playerPosition.x, playerPosition.y + 10,
@@ -21,6 +22,7 @@ namespace Player
 
         public void Update()
         {
+            // Move the camera forward each frame at a slow speed
             var cameraTransform = transform;
             var cameraPosition = cameraTransform.position;
 

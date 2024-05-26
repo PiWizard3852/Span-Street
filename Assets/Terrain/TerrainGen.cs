@@ -62,18 +62,21 @@ namespace Terrain
         {
             _terrainStreak = 1;
             _lastTerrainType = TerrainTypes.Grass;
-
+            
+            // Instantiate terrain in front of and behind the player
             for (_terrainZ = -10; _terrainZ < 100; _terrainZ++) InstantiateLand();
         }
 
         public void Update()
         {
+            // Instantiate new terrain pieces in front of the player
             if (_terrainZ - player.transform.position.z < 70)
             {
                 _terrainZ++;
                 InstantiateLand();
             }
 
+            // Destroy old vehicles out of the frame and generate new ones
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 _cars = GameObject.FindGameObjectsWithTag("Car");
@@ -119,6 +122,7 @@ namespace Terrain
 
         private void InstantiateLand()
         {
+            // Generate a randomly choosen piece of terrain and the vehicles or coins on it
             switch (GetTerrainType())
             {
                 case TerrainTypes.Grass:
@@ -153,6 +157,7 @@ namespace Terrain
 
         private void InstantiateCoin(int coinZ)
         {
+            // Create a new coin on the terrain
             Instantiate(coin, new Vector3(_random.Next(-12, 12), 1, coinZ),
                 Quaternion.Euler(90, 0, 0));
         }
@@ -179,6 +184,7 @@ namespace Terrain
                     break;
             }
 
+            // Instantiate a randomly choosen car type
             Instantiate(car,
                 new Vector3(transform.position.x - _random.Next(15, 25) - _random.Next(10, 20) * (cardinal - 1), 1.8f,
                     carZ),
@@ -207,6 +213,7 @@ namespace Terrain
                     break;
             }
 
+            // Instantiate a randomly choosen log type
             Instantiate(log,
                 new Vector3(transform.position.x - _random.Next(15, 20) - _random.Next(5, 15) * (cardinal - 1), .6f,
                     logZ),
@@ -220,12 +227,14 @@ namespace Terrain
 
         private void InstantiateTrain(int trainZ)
         {
+            // Instantiate a train
             Instantiate(train1, new Vector3(transform.position.x - _random.Next(10, 40), 1.8f, trainZ),
                 Quaternion.Euler(0, 0, 0));
         }
 
         private TerrainTypes GetTerrainType()
         {
+            // Instantiate grass as the first terrain type
             if (_terrainZ == 0)
             {
                 if (_lastTerrainType == TerrainTypes.Grass)
@@ -241,6 +250,7 @@ namespace Terrain
                 return _lastTerrainType;
             }
 
+            // Randomly choose whether or not to reset the terrain streat
             if (_random.Next(3) == 2)
             {
                 _lastTerrainType = (TerrainTypes)_random.Next(Enum.GetNames(typeof(TerrainTypes)).Length);
@@ -251,23 +261,20 @@ namespace Terrain
                 _terrainStreak++;
             }
 
+            // Check if the terrain type breaks the bounds of the terrain streak
             switch (_lastTerrainType)
             {
                 case TerrainTypes.Grass:
                     if (_terrainStreak > 5) return GetTerrainType();
-
                     break;
                 case TerrainTypes.Road:
                     if (_terrainStreak > 8) return GetTerrainType();
-
                     break;
                 case TerrainTypes.River:
                     if (_terrainStreak > 2) return GetTerrainType();
-
                     break;
                 case TerrainTypes.Railroad:
                     if (_terrainStreak > 2) return GetTerrainType();
-
                     break;
             }
 
